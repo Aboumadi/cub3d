@@ -42,16 +42,18 @@ void	ft_check_extension_file(char *file)
 int main(int argc, char **argv)
 {
 	int fd;
-	t_cub	map;
+	t_cub	*map;
 	
 	if (argc != 2)
 		ft_error(1);
 	ft_check_extension_file(argv[1]);
-	count_line_map(&map, argv[1]);
+	map = (t_cub *)malloc(sizeof(t_cub));
+	ft_init(map);
+	count_line_map(map, argv[1]);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		ft_error(2);
-	ft_read_map(argv[1], &map, fd);
-	check_map(&map);
+	ft_read_map(argv[1], map, fd);
+	check_map(map);
 	return 0;
 }

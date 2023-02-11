@@ -24,7 +24,7 @@ OBJ = ${SRC:.c=.o}
 
 CFLAGS = -Wall -Wextra -Werror
 
-FRAME = -lmlx -framework OpenGL -framework AppKit
+#FRAME = -lmlx -framework OpenGL -framework AppKit
 
 CC = gcc
 
@@ -34,11 +34,11 @@ $(NAME) : $(OBJ) $(HEADER)
 		$(MAKE) -C ./libft
 		$(MAKE) bonus -C ./libft
 		@echo "making libft.a ..."
-		@$(CC) $(CFLAGS) $(FRAME) $(OBJ) $(LIBFT) -o $(NAME)
+		@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 clean :
 		$(MAKE) clean -C ./libft
-		rm -rf $(OBJS)
+		rm -rf $(OBJ)
 
 fclean :  clean
 		$(MAKE) fclean -C ./libft
