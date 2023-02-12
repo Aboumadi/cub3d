@@ -14,9 +14,11 @@
 
 int		parse_line(t_cub *map)
 {
-	map->col_map.c_exist = ft_strncmp(map->line, "C", 1);
 	map->col_map.f_exist = ft_strncmp(map->line, "F", 1);
-	if (map->col_map.f_exist && map->col_map.c_exist)
+	if (!map->col_map.f_exist)
+		check_color(map);
+	map->col_map.c_exist = ft_strncmp(map->line, "C", 1);
+	if (!map->col_map.c_exist)
 		check_color(map);
 	if (map->if_c)
 		return 1;
@@ -25,6 +27,43 @@ int		parse_line(t_cub *map)
 
 void	check_color(t_cub *map)
 {
+	int		i;
+	int		j;
+	int		k;
+	char	*t_line;
+
+	i = 1;
+	j = ft_strlen(map->line);
+	while (map->line[i] && (map->line[i] == ' '))
+		i++;
+	while (j && (map->line[j] == ' '))
+		j--;
+	k = j - i;
+	t_line = ft_substr(map->line, i, k + 1);
+	check_path_color(t_line, map);
+}
+
+void	check_path_color(char *str, t_cub *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+		{
+			j++;
+			i++;
+		}
+		else
+			i++;
+	}
+	if (j == 2)
+		map->if_c = 1;
+	else
+		map->if_c = 0;
 }
 
 void	check_map(t_cub *map)

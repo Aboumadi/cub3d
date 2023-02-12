@@ -69,7 +69,7 @@ void	ft_read_map(char *file, t_cub *map2, int fd)
 			map2->line = get_line(&map2->line, fd);
 			continue;
 		}
-		printf("%s", map2->line);
+		//printf("%s", map2->line);
 		i = parse_line(map2);
 		map2->line = get_line(&map2->line, fd);
 		i++;
