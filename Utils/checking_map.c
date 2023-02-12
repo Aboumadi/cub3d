@@ -50,44 +50,13 @@ void	check_syntax_color(char *str, t_cub *map)
 
 	i = 0;
 	j = 0;
-	while (str[i])
+	while (str[i++])
 	{
 		if (str[i] == ',')
-		{
 			j++;
-			i++;
-		}
-		else
-			i++;
 	}
 	if (j == 2)
 		map->if_c = 1;
 	else
 		map->if_c = 0;
-}
-
-void	check_map(t_cub *map)
-{
-	(void) map;
-	/*int		i;
-	int		j;
-	int		k;
-	char	*check;
-	
-	i = 0;
-	while (map->t_map[i])
-	{
-		j = 0;
-		check = (char *) malloc(ft_strlen(map->t_map[i]) * sizeof(char *));
-		k = 0;
-		check = map->t_map[i];
-		while (check)
-		{
-			if (is_space(check[k]))
-				k++;
-			else if (ft_is_valid(check[k]))
-				pars_string()
-		}
-		i++;
-	}*/
 }
