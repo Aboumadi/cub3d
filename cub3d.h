@@ -60,7 +60,7 @@ char	*get_next_line(int fd);
 void	ft_init(t_cub *map);
 int		parse_line(t_cub *map);
 void	check_color(t_cub *map);
-void	check_path_color(char *str, t_cub *map);
+void	check_syntax_color(char *str, t_cub *map);
 void	check_map(t_cub *map);
 
 #endif

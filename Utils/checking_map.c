@@ -40,10 +40,10 @@ void	check_color(t_cub *map)
 		j--;
 	k = j - i;
 	t_line = ft_substr(map->line, i, k + 1);
-	check_path_color(t_line, map);
+	check_syntax_color(t_line, map);
 }
 
-void	check_path_color(char *str, t_cub *map)
+void	check_syntax_color(char *str, t_cub *map)
 {
 	int	i;
 	int	j;
