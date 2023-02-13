@@ -41,6 +41,32 @@ void	check_color(t_cub *map)
 	k = j - i;
 	t_line = ft_substr(map->line, i, k + 1);
 	check_syntax_color(t_line, map);
+	if (map->if_c)
+		get_val(t_line, map);
+}
+
+bool	get_val(char *str, t_cub *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	map->array = (char **) malloc(3 * sizeof(char *));
+		if (!ft_isdigit(str[i]))
+			return false;
+		j = i;
+		while (ft_isdigit(str[j]))
+			j++;
+		i = j;
+		if (str[i] != ';')
+			return false;
+		map->array = ft_split(str, ',');
+		conv_val(map);
+	return true;
+}
+
+int	check_is_digit(char *str, int i, int j)
+{
 }
 
 void	check_syntax_color(char *str, t_cub *map)

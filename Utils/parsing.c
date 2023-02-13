@@ -54,9 +54,9 @@ void	ft_read_map(char *file, t_cub *map2, int fd)
 	int		i;
 
 	i = 0;
-	map2->array = (char **) malloc((map2->nb_l + 1) * sizeof(char *));
-	if (!map2->array)
-		ft_error(3);
+	//map2->array = (char **) malloc((map2->nb_l + 1) * sizeof(char *));
+	//if (!map2->array)
+	//	ft_error(3);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		ft_error(2);
@@ -69,7 +69,6 @@ void	ft_read_map(char *file, t_cub *map2, int fd)
 			map2->line = get_line(&map2->line, fd);
 			continue;
 		}
-		//printf("%s", map2->line);
 		i = parse_line(map2);
 		map2->line = get_line(&map2->line, fd);
 		i++;

@@ -54,6 +54,5 @@ int main(int argc, char **argv)
 	if (fd < 0)
 		ft_error(2);
 	ft_read_map(argv[1], map, fd);
-	check_map(map);
 	return 0;
 }

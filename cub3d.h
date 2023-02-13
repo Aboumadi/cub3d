@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <stdbool.h>
 # include <mlx.h>
 # include <string.h>
 # include "./libft/libft.h"
@@ -61,6 +62,7 @@ void	ft_init(t_cub *map);
 int		parse_line(t_cub *map);
 void	check_color(t_cub *map);
 void	check_syntax_color(char *str, t_cub *map);
-void	check_map(t_cub *map);
+bool	get_val(char *str, t_cub *map);
+void	conv_val(t_cub *map);
 
 #endif
