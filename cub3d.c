@@ -47,7 +47,6 @@ int main(int argc, char **argv)
 	if (argc != 2)
 		ft_error(1);
 	ft_check_extension_file(argv[1]);
-	printf("ere");
 	map = (t_cub *)malloc(sizeof(t_cub));
 	ft_init(map);
 	count_line_map(map, argv[1]);

@@ -20,12 +20,12 @@ char	*get_line(char **line, int fd)
 
 void	ft_init(t_cub *map)
 {
-	map->map.e_exist = 0;
-	map->map.n_exist = 0;
-	map->map.s_exist = 0;
-	map->map.w_exist = 0;
-	map->col_map.c_exist = 0;
-	map->col_map.f_exist = 0;
+	map->map.e_exist = -1;
+	map->map.n_exist = -1;
+	map->map.s_exist = -1;
+	map->map.w_exist = -1;
+	map->col_map.c_exist = -1;
+	map->col_map.f_exist = -1;
 	map->if_c = 0;
 	map->nb_l = 0;
 }

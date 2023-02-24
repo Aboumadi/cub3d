@@ -26,7 +26,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 #FRAME = -lmlx -framework OpenGL -framework AppKit
 
-CC = cc
+CC = gcc
 
 all : $(NAME)
 

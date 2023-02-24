@@ -30,6 +30,7 @@ void	check_color(t_cub *map)
 	int		i;
 	int		j;
 	int		k;
+	int		t;
 	char	*t_line;
 
 	i = 1;
@@ -42,41 +43,52 @@ void	check_color(t_cub *map)
 	t_line = ft_substr(map->line, i, k + 1);
 	check_syntax_color(t_line, map);
 	if (map->if_c)
-		get_val(t_line, map);
+		t = get_val(t_line, map);
+	if (!t)
+		printf("error\n");
+	i = 0;
+	while (i < 3)
+	{
+		printf("%s\n", map->array[i]);
+		i++;
+	}
 }
 
 bool	get_val(char *str, t_cub *map)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	map->array = (char **) malloc(3 * sizeof(char *));
 		if (!ft_isdigit(str[i]))
 			return false;
-		j = i;
-		while (ft_isdigit(str[j]))
-			j++;
-		i = j;
-		if (str[i] != ';')
-			return false;
 		map->array = ft_split(str, ',');
-		conv_val(map);
+		free(str);
+		i = -1;
+		while (++i < 3)
+		{
+			if (!map->array[i])
+			{
+				free(map->array);
+				return false;
+			}
+		}
+		//conv_val(map);
 	return true;
 }
 
-int	check_is_digit(char *str, int i, int j)
+/*int	check_is_digit(char *str, int i, int j)
 {
-}
+}*/
 
 void	check_syntax_color(char *str, t_cub *map)
 {
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	while (str[i++])
+	while (str[++i])
 	{
 		if (str[i] == ',')
 			j++;
