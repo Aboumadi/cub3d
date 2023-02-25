@@ -6,13 +6,13 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 20:13:56 by aboumadi          #+#    #+#             */
-/*   Updated: 2022/10/22 15:37:38 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/02/25 20:05:18 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
@@ -26,8 +26,8 @@ size_t	ft_strlen(const char *str)
 
 char	*ft_strjoin(char *str, char *buff)
 {
-	unsigned int	i;
-	unsigned int	j;
+	int	i;
+	int	j;
 	char			*s3;
 
 	if (!str)

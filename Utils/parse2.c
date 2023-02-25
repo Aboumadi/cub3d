@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnajid <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 17:56:23 by mnajid            #+#    #+#             */
-/*   Updated: 2021/11/09 17:57:11 by mnajid           ###   ########.fr       */
+/*   Created: 2023/02/24 20:00:29 by aboumadi          #+#    #+#             */
+/*   Updated: 2023/02/25 22:04:27 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "../cub3d.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+int check_val(char *str)
 {
-	if (!lst || !del)
-		return ;
-	(*del)(lst->content);
-	free(lst);
+    int i;
+
+    i = 0;
+    while (str[i])
+    {
+        if ((!ft_isdigit(str[i]) || ft_isalpha(str[i])))
+            return 0;
+        i++;
+    }
+    return 1;;
 }

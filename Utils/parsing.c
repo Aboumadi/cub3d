@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:55:21 by aboumadi          #+#    #+#             */
-/*   Updated: 2022/10/23 20:30:39 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/02/25 22:03:12 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	ft_init(t_cub *map)
 	map->map.w_exist = -1;
 	map->col_map.c_exist = -1;
 	map->col_map.f_exist = -1;
-	map->if_c = 0;
+	map->col_map.is_v = 0;
+	map->if_c = -1;
 	map->nb_l = 0;
 }
 
@@ -49,14 +50,24 @@ void	count_line_map(t_cub *count, char *file)
 	close(fd);
 }
 
+int		parse_line(t_cub *map)
+{
+	map->col_map.f_exist = ft_strncmp(map->line, "F", 1);
+	if (!map->col_map.f_exist)
+		check_color(map);
+	map->col_map.c_exist = ft_strncmp(map->line, "C", 1);
+	if (!map->col_map.c_exist)
+		check_color(map);
+	if (map->if_c)
+		return 1;
+	return 0;
+}
+
 void	ft_read_map(char *file, t_cub *map2, int fd)
 {
 	int		i;
 
 	i = 0;
-	//map2->array = (char **) malloc((map2->nb_l + 1) * sizeof(char *));
-	//if (!map2->array)
-	//	ft_error(3);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		ft_error(2);

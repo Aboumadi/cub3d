@@ -3,20 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnajid <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: aboumadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 20:11:19 by mnajid            #+#    #+#             */
-/*   Updated: 2021/11/05 20:14:16 by mnajid           ###   ########.fr       */
+/*   Created: 2021/11/04 16:10:20 by aboumadi          #+#    #+#             */
+/*   Updated: 2021/11/07 09:48:35 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include"libft.h"
 
-int	ft_isalnum(int ch)
+int	ft_isalnum(int n)
 {
-	if ((ch >= 'A' && ch <= 'Z')
-		|| (ch >= 'a' && ch <= 'z')
-		|| (ch >= '0' && ch <= '9'))
+	if ((n >= 65 && n <= 90) || (n >= 97 && n <= 122) || (n >= 48 && n <= 57))
 		return (1);
 	return (0);
 }

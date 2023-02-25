@@ -3,61 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnajid <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: aboumadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 19:57:27 by mnajid            #+#    #+#             */
-/*   Updated: 2021/11/13 14:40:28 by mnajid           ###   ########.fr       */
+/*   Created: 2021/11/13 13:13:27 by aboumadi          #+#    #+#             */
+/*   Updated: 2021/11/14 15:08:38 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include"libft.h"
 
-static size_t	dig_nb(long n)
+int	count(int n)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	if (n == 0)
-		return (1);
-	while (n)
+	if (n < 0)
 	{
-		n /= 10;
+		n *= -1;
 		i++;
 	}
+	while (n > 9)
+	{
+		n = n / 10;
+		i++;
+	}
+	i++;
 	return (i);
 }
 
-static char	*ft_filltab(char *ptr, long nb, size_t len, size_t i)
+char	*ft_positiv(int n)
 {
-	ptr[len + i] = '\0';
-	if (nb < 0)
-	{	
-		ptr[0] = '-';
-		nb *= -1;
-	}
-	while (len)
+	int		i;
+	char	*t;
+
+	i = count(n);
+	t = (char *)malloc((i + 1) * sizeof(char));
+	if (t == NULL)
+		return (NULL);
+	t[i] = '\0';
+	i--;
+	while (i >= 0)
 	{
-		ptr[len + i - 1] = (nb % 10) + '0';
-		nb /= 10;
-		len--;
+		t[i] = (n % 10) + 48;
+		n /= 10;
+		i--;
 	}
-	return (ptr);
+	return (t);
+}
+
+char	*ft_negativ(int n)
+{
+	int		i;
+	char	*t;
+
+	i = count(n);
+	t = (char *)malloc((i + 1) * sizeof(char));
+	if (t == NULL)
+		return (NULL);
+	t[i] = '\0';
+	i--;
+	t[0] = '-';
+	n *= -1;
+	while (i > 0)
+	{
+		t[i] = (n % 10) + 48;
+		n /= 10;
+		i--;
+	}
+	return (t);
 }
 
 char	*ft_itoa(int n)
 {
-	long	nb;
-	char	*ptr;
-	size_t	num;
-	size_t	i;
-
-	i = 0;
-	nb = n;
-	num = dig_nb(nb);
-	if (nb < 0)
-		i++;
-	ptr = malloc(num + i + 1);
-	if (!ptr)
-		return (NULL);
-	ptr = ft_filltab(ptr, nb, num, i);
-	return (ptr);
+	if (n < 0)
+	{
+		if (n == -2147483648)
+			return (ft_strdup("-2147483648"));
+		return (ft_negativ(n));
+	}
+	return (ft_positiv(n));
 }

@@ -1,22 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   memchr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aboumadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 17:45:31 by aboumadi          #+#    #+#             */
-/*   Updated: 2021/11/07 13:23:04 by aboumadi         ###   ########.fr       */
+/*   Created: 2021/11/05 16:57:58 by aboumadi          #+#    #+#             */
+/*   Updated: 2021/11/05 17:42:09 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"libft.h"
 
-int	ft_toupper(int c)
+#include"libft.h"
+void *	ft_memchr(const void *s, int c, size_t n)
 {
-	if (c >= 'a' && c <= 'z')
+	size_t i;
+	char *str;
+	size_t x;
+
+	i = 0;
+	str = (char *)s;
+	while (i <= n)
 	{
-		c = c - 32;
-		return (c);
+		if (s[i] == c)
+		{
+			x = i;
+			return x;
+		}
+		else i++;
 	}
-	return (c);
+	if (x == 0)
+		return (s + i);
+	return 0;
+}
+int main()
+{
+	char *s1 = "achraf";
+	int c = 'r';
+	printf("%s", ft_memchr(s1, c, 4));
 }

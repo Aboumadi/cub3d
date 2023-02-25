@@ -5,19 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 20:59:15 by mnajid            #+#    #+#             */
-/*   Updated: 2022/10/22 15:37:51 by aboumadi         ###   ########.fr       */
+/*   Created: 2021/11/04 17:26:42 by aboumadi          #+#    #+#             */
+/*   Updated: 2023/02/25 17:45:13 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
+	{
 		i++;
+	}
 	return (i);
 }

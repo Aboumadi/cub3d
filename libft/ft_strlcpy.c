@@ -3,31 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mnajid <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 20:58:21 by mnajid            #+#    #+#             */
-/*   Updated: 2021/11/05 20:58:23 by mnajid           ###   ########.fr       */
+/*   Created: 2021/11/05 10:25:19 by aboumadi          #+#    #+#             */
+/*   Updated: 2023/02/25 19:05:03 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+int	ft_strlcpy(char *s2, const char *s1, int n)
 {
-	size_t	len;
-	size_t	i;
+	int	i;
+	int	j;
 
-	len = 0;
 	i = 0;
-	while (src[len] != '\0')
-		len++;
-	if (size == 0)
-		return (len);
-	while (src[i] != '\0' && i < (size - 1))
+	j = 0;
+	while (s1[j] != '\0')
+		j++;
+	i = 0;
+	if (n > 0)
 	{
-		dest[i] = src[i];
-		i++;
+		while (s1[i] != '\0' && i < n - 1)
+		{
+			s2[i] = s1[i];
+			i++;
+		}
 	}
-	dest[i] = '\0';
-	return (len);
+	s2[i] = '\0';
+	return (j);
 }
+/*int main()
+{
+	char *str1;
+	char str2[10];
+	printf("%lu\n", ft_strlcpy(str2, str1, 0), strlcpy(str2, str1, 0));
+}*/

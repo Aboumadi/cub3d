@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 14:04:22 by aboumadi          #+#    #+#             */
-/*   Updated: 2022/10/23 20:40:06 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/02/25 21:56:31 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef	struct	s_color
 	int		B;
 	int		c_exist;
 	int		f_exist;
+	int		is_v;
 }	t_color;
 
 typedef struct s_map
@@ -63,6 +64,8 @@ int		parse_line(t_cub *map);
 void	check_color(t_cub *map);
 void	check_syntax_color(char *str, t_cub *map);
 bool	get_val(char *str, t_cub *map);
+int		pars_val(t_cub *map);
+int		check_val(char *str);
 void	conv_val(t_cub *map);
 
 #endif

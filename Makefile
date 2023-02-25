@@ -6,7 +6,7 @@
 #    By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/22 13:59:10 by aboumadi          #+#    #+#              #
-#    Updated: 2022/10/23 20:35:56 by aboumadi         ###   ########.fr        #
+#    Updated: 2023/02/25 22:02:21 by aboumadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ HEADER = cub3d.h
 LIBFT = ./libft/libft.a
 
 SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
-	Utils/parsing.c Utils/checking_map.c\
+	Utils/parsing.c Utils/check_col_map.c Utils/parse2.c\
 	cub3d.c
 
 OBJ = ${SRC:.c=.o}
@@ -26,13 +26,12 @@ CFLAGS = -Wall -Wextra -Werror
 
 #FRAME = -lmlx -framework OpenGL -framework AppKit
 
-CC = gcc
+CC = cc
 
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(HEADER)
 		$(MAKE) -C ./libft
-		$(MAKE) bonus -C ./libft
 		@echo "making libft.a ..."
 		@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
