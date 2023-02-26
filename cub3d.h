@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 14:04:22 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/02/25 21:56:31 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/02/25 23:07:06 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_read_map(char *argv, t_cub *map, int fd);
 char	*get_next_line(int fd);
 void	ft_init(t_cub *map);
 int		parse_line(t_cub *map);
-void	check_color(t_cub *map);
+void	check_color(t_cub *map, int i, int j);
 void	check_syntax_color(char *str, t_cub *map);
 bool	get_val(char *str, t_cub *map);
 int		pars_val(t_cub *map);

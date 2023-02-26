@@ -6,7 +6,7 @@
 #    By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/22 13:59:10 by aboumadi          #+#    #+#              #
-#    Updated: 2023/02/25 22:02:21 by aboumadi         ###   ########.fr        #
+#    Updated: 2023/02/25 23:14:36 by aboumadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ HEADER = cub3d.h
 LIBFT = ./libft/libft.a
 
 SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
-	Utils/parsing.c Utils/check_col_map.c Utils/parse2.c\
+	Utils/parsing.c Utils/check_col_map.c Utils/check_text_map.c\
 	cub3d.c
 
 OBJ = ${SRC:.c=.o}

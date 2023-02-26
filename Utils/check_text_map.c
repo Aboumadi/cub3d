@@ -6,22 +6,8 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:00:29 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/02/25 22:04:27 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/02/25 23:02:39 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-int check_val(char *str)
-{
-    int i;
-
-    i = 0;
-    while (str[i])
-    {
-        if ((!ft_isdigit(str[i]) || ft_isalpha(str[i])))
-            return 0;
-        i++;
-    }
-    return 1;;
-}

@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:55:21 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/02/25 22:03:12 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/02/26 01:14:58 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,6 @@ void	count_line_map(t_cub *count, char *file)
 	close(fd);
 }
 
-int		parse_line(t_cub *map)
-{
-	map->col_map.f_exist = ft_strncmp(map->line, "F", 1);
-	if (!map->col_map.f_exist)
-		check_color(map);
-	map->col_map.c_exist = ft_strncmp(map->line, "C", 1);
-	if (!map->col_map.c_exist)
-		check_color(map);
-	if (map->if_c)
-		return 1;
-	return 0;
-}
-
 void	ft_read_map(char *file, t_cub *map2, int fd)
 {
 	int		i;
@@ -86,4 +73,17 @@ void	ft_read_map(char *file, t_cub *map2, int fd)
 	}
 	free(map2->line);
 	close(fd);
+}
+
+int		parse_line(t_cub *map)
+{
+	map->col_map.f_exist = ft_strncmp(map->line, "F ", 2);
+	if (!map->col_map.f_exist)
+		check_color(map, 1, ft_strlen(map->line));
+	map->col_map.c_exist = ft_strncmp(map->line, "C ", 2);
+	if (!map->col_map.c_exist)
+		check_color(map, 1, ft_strlen(map->line));
+	if (map->if_c)
+		return 1;
+	return 0;
 }
