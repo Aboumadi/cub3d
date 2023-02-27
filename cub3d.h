@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 14:04:22 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/02/25 23:07:06 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/02/27 01:13:40 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef	struct	s_color
 	int		B;
 	int		c_exist;
 	int		f_exist;
-	int		is_v;
+	//int		is_v;
 }	t_color;
 
 typedef struct s_map
@@ -48,8 +48,15 @@ typedef	struct	s_cub
 	char	**array;
 	char	*line;
 	int		if_c;
-	t_color	col_map;
+	int		c_exist;
+	int		f_exist;
+	int		is_v;
+	t_color col_map;
+	t_color	c;
+	t_color f;
 	t_map	map;
+	
+	
 }	t_cub;
 
 
@@ -61,11 +68,12 @@ void	ft_read_map(char *argv, t_cub *map, int fd);
 char	*get_next_line(int fd);
 void	ft_init(t_cub *map);
 int		parse_line(t_cub *map);
-void	check_color(t_cub *map, int i, int j);
+int		check_color(t_cub *map, int i, int j, bool k);
 void	check_syntax_color(char *str, t_cub *map);
 bool	get_val(char *str, t_cub *map);
 int		pars_val(t_cub *map);
 int		check_val(char *str);
+int		full_color(t_cub *map, bool i);
 void	conv_val(t_cub *map);
 
 #endif
