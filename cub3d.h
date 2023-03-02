@@ -73,7 +73,7 @@ void	check_syntax_color(char *str, t_cub *map);
 bool	get_val(char *str, t_cub *map);
 int		pars_val(t_cub *map);
 int		check_val(char *str);
-int		full_color(t_cub *map, int i);
+int		full_color(t_cub *map, bool i);
 void	conv_val(t_cub *map);
 
 #endif

@@ -77,9 +77,9 @@ int check_val(char *str)
     return 1;
 }
 
-int	full_color(t_cub *map, int i)
+int	full_color(t_cub *map, bool i)
 {
-	if (i == 1)
+	if (i == true)
 	{
 		map->f.R = ft_atoi(map->array[0]);
 		map->f.G = ft_atoi(map->array[1]);
