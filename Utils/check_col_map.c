@@ -33,13 +33,9 @@ int	check_color(t_cub *map, int i, int j, bool k)
 			j--;
 	}
 	if (j == 2 && get_val(t_line, map))
-	{
 		return (full_color(map, k));
-	}
 	else
-	{
 		return 0;
-	}
 }
 
 bool	get_val(char *str, t_cub *map)
