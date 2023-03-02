@@ -77,24 +77,14 @@ void	ft_read_map(char *file, t_cub *map2, int fd)
 
 void	parse_line(t_cub *map)
 {
-	if (!ft_strncmp(map->line, "F ", 2))
-	{
-		if (check_color(map, 1, ft_strlen(map->line), 1))
+	if (!ft_strncmp(map->line, "F ", 2) && check_color(map, 1, ft_strlen(map->line), 1))
 			map->col_map.f_is_v = 1;
-		else
-		{
-			printf("error in color value in f\n");
-			exit(0);
-		}
-	}
-	else if (!ft_strncmp(map->line, "C ", 2))
-	{
-		if (check_color(map, 1, ft_strlen(map->line), 0))
+	else if (!ft_strncmp(map->line, "C ", 2) && check_color(map, 1, ft_strlen(map->line), 0))
 			map->col_map.c_is_v = 1;
-		else
-		{
-			printf("error in color value in c\n");
-			exit(0);
-		}
+	else
+	{
+		printf("%s\n", map->line);
+		printf("error in color\n");
+		exit(0);
 	}
 }
