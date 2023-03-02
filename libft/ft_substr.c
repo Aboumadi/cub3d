@@ -24,7 +24,7 @@ char	*ft_substr(char const *src, int s, int len)
 	j = 0;
 	while (i < len && src[i++] != '\0')
 		j++;
-		dst = malloc((j + 1) * sizeof(char));
+	dst = malloc((j + 1) * sizeof(char));
 	if (dst == NULL)
 		return (NULL);
 	i = 0;

@@ -35,14 +35,9 @@ int	check_color(t_cub *map, int i, int j, bool k)
 	if (j == 2 && get_val(t_line, map))
 	{
 		return (full_color(map, k));
-		//l = (full_color(map, k));
-		//printf("%d\n", l);
-		//return l;
 	}
 	else
 	{
-		// printf("false\n");
-		// map->is_v = 0;
 		return 0;
 	}
 }
@@ -82,19 +77,16 @@ int check_val(char *str)
     return 1;
 }
 
-int	full_color(t_cub *map, bool i)
+int	full_color(t_cub *map, int i)
 {
-	if (i == true)
+	if (i == 1)
 	{
 		map->f.R = ft_atoi(map->array[0]);
 		map->f.G = ft_atoi(map->array[1]);
 		map->f.B = ft_atoi(map->array[2]);
 		if ((map->f.R >= 0 && map->f.R <= 255) && (map->f.G >= 0 && map->f.G <= 255) 
 			&& (map->f.B >= 0 && map->f.B <= 255))
-		{
-			printf("here_f\n");
 			return 1;
-		}
 		return 0;
 	}
 	else
@@ -104,10 +96,7 @@ int	full_color(t_cub *map, bool i)
 		map->c.B = ft_atoi(map->array[2]);
 		if ((map->c.R >= 0 && map->c.R <= 255) && (map->c.G >= 0 && map->c.G <= 255) 
 			&& (map->c.B >= 0 && map->c.B <= 255))
-		{
-			printf("here_c\n");
 			return 1;
-		}
 		return 0;
 	}
 }

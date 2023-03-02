@@ -24,9 +24,9 @@ void	ft_init(t_cub *map)
 	map->map.n_exist = -1;
 	map->map.s_exist = -1;
 	map->map.w_exist = -1;
-	map->col_map.c_exist = -1;
-	map->col_map.f_exist = -1;
-	map->is_v = 0;
+	map->col_map.c_is_v = -1;
+	map->col_map.f_is_v = -1;
+	map->col_v = 0;
 	map->if_c = -1;
 	map->nb_l = 0;
 }
@@ -67,7 +67,7 @@ void	ft_read_map(char *file, t_cub *map2, int fd)
 			map2->line = get_line(&map2->line, fd);
 			continue;
 		}
-		i = parse_line(map2);
+		parse_line(map2);
 		map2->line = get_line(&map2->line, fd);
 		i++;
 	}
@@ -75,21 +75,26 @@ void	ft_read_map(char *file, t_cub *map2, int fd)
 	close(fd);
 }
 
-int		parse_line(t_cub *map)
+void	parse_line(t_cub *map)
 {
-	map->col_map.f_exist = ft_strncmp(map->line, "F ", 2);
-	if (map->col_map.f_exist && check_color(map, 1, ft_strlen(map->line), 1) == 0)
+	if (!ft_strncmp(map->line, "F ", 2))
 	{
-		printf("false_f\n");
-		return 0;
+		if (check_color(map, 1, ft_strlen(map->line), 1))
+			map->col_map.f_is_v = 1;
+		else
+		{
+			printf("error in color value in f\n");
+			exit(0);
+		}
 	}
-	map->col_map.c_exist = ft_strncmp(map->line, "C ", 2);
-	if (map->col_map.c_exist && check_color(map, 1, ft_strlen(map->line), 0) == 0)
+	else if (!ft_strncmp(map->line, "C ", 2))
 	{
-		printf("false_c\n");
-		return 0;
+		if (check_color(map, 1, ft_strlen(map->line), 0))
+			map->col_map.c_is_v = 1;
+		else
+		{
+			printf("error in color value in c\n");
+			exit(0);
+		}
 	}
-	//if (map->if_c)
-	//printf("succes\n");
-	return 1;
 }

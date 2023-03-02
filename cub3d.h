@@ -28,8 +28,8 @@ typedef	struct	s_color
 	int		R;
 	int		G;
 	int		B;
-	int		c_exist;
-	int		f_exist;
+	int		c_is_v;
+	int		f_is_v;
 	//int		is_v;
 }	t_color;
 
@@ -50,7 +50,7 @@ typedef	struct	s_cub
 	int		if_c;
 	int		c_exist;
 	int		f_exist;
-	int		is_v;
+	int		col_v;
 	t_color col_map;
 	t_color	c;
 	t_color f;
@@ -67,13 +67,13 @@ void	count_line_map(t_cub *count, char *file);
 void	ft_read_map(char *argv, t_cub *map, int fd);
 char	*get_next_line(int fd);
 void	ft_init(t_cub *map);
-int		parse_line(t_cub *map);
+void	parse_line(t_cub *map);
 int		check_color(t_cub *map, int i, int j, bool k);
 void	check_syntax_color(char *str, t_cub *map);
 bool	get_val(char *str, t_cub *map);
 int		pars_val(t_cub *map);
 int		check_val(char *str);
-int		full_color(t_cub *map, bool i);
+int		full_color(t_cub *map, int i);
 void	conv_val(t_cub *map);
 
 #endif

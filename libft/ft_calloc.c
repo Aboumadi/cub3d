@@ -17,7 +17,7 @@ void	*ft_calloc(size_t l, size_t s)
 	void	*str;
 
 	str = malloc(l * s);
-	if (str == '\0')
+	if (!str)
 		return (0);
 	ft_bzero(str, (l * s));
 	return (str);
