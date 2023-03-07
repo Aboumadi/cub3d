@@ -28,18 +28,17 @@ typedef	struct	s_color
 	int		R;
 	int		G;
 	int		B;
-	int		c_is_v;
-	int		f_is_v;
-	//int		is_v;
+	//int		c_is_v;
+	//int		f_is_v;
 }	t_color;
 
-typedef struct s_map
+typedef struct s_text
 {
-	int s_exist;
-	int n_exist;
-	int w_exist;
-	int e_exist;
-}	t_map;
+	char	*s_exist;
+	char	*n_exist;
+	char	*w_exist;
+	char	*e_exist;
+}	t_text;
 
 
 typedef	struct	s_cub
@@ -54,7 +53,7 @@ typedef	struct	s_cub
 	t_color col_map;
 	t_color	c;
 	t_color f;
-	t_map	map;
+	t_text	map;
 	
 	
 }	t_cub;
@@ -69,11 +68,11 @@ char	*get_next_line(int fd);
 void	ft_init(t_cub *map);
 void	parse_line(t_cub *map);
 int		check_color(t_cub *map, int i, int j, bool k);
-void	check_syntax_color(char *str, t_cub *map);
 bool	get_val(char *str, t_cub *map);
 int		pars_val(t_cub *map);
 int		check_val(char *str);
 int		full_color(t_cub *map, bool i);
-void	conv_val(t_cub *map);
+int		ft_check_path(t_cub *map, int i, int j);
+int		check_file(char *str);
 
 #endif

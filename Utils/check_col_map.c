@@ -15,7 +15,6 @@
 int	check_color(t_cub *map, int i, int j, bool k)
 {
 	char	*t_line;
-	//int l = 0;
 	
 	while (map->line[i] && (map->line[i] == ' '))
 		i++;

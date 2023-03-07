@@ -20,12 +20,14 @@ char	*get_line(char **line, int fd)
 
 void	ft_init(t_cub *map)
 {
-	map->map.e_exist = -1;
-	map->map.n_exist = -1;
-	map->map.s_exist = -1;
-	map->map.w_exist = -1;
-	map->col_map.c_is_v = -1;
-	map->col_map.f_is_v = -1;
+	map->map.e_exist = NULL;
+	map->map.n_exist = NULL;
+	map->map.s_exist = NULL;
+	map->map.w_exist = NULL;
+	//map->col_map.c_is_v = -1;
+	//map->col_map.f_is_v = -1;
+	map->c_exist = -1;
+	map->f_exist = -1;
 	map->col_v = 0;
 	map->if_c = -1;
 	map->nb_l = 0;
@@ -78,12 +80,24 @@ void	ft_read_map(char *file, t_cub *map2, int fd)
 void	parse_line(t_cub *map)
 {
 	if (!ft_strncmp(map->line, "F ", 2) && check_color(map, 1, ft_strlen(map->line), 1))
-			map->col_map.f_is_v = 1;
+			map->f_exist = 1;
 	else if (!ft_strncmp(map->line, "C ", 2) && check_color(map, 1, ft_strlen(map->line), 0))
-			map->col_map.c_is_v = 1;
+			map->c_exist = 1;
+	else if (!ft_strncmp(map->line, "NO ", 3) && ft_check_path(map, 2, ft_strlen(map->line)))
+		//printf("%s\n", map->line);
+		printf("NO succes\n");
+	else if (!ft_strncmp(map->line, "SO ", 3) && ft_check_path(map, 2, ft_strlen(map->line)))
+		//printf("%s\n", map->line);
+		printf("SO succes\n");
+	else if (!ft_strncmp(map->line, "EA ", 3) && ft_check_path(map, 2, ft_strlen(map->line)))
+		//printf("%s\n", map->line);
+		printf("EA succes\n");
+	else if (!ft_strncmp(map->line, "WE ", 3) && ft_check_path(map, 2, ft_strlen(map->line)))
+		//printf("%s\n", map->line);
+		printf("WA succes\n");
 	else
 	{
-		printf("%s\n", map->line);
+		//printf("%s\n", map->line);
 		printf("error in color\n");
 		exit(0);
 	}
