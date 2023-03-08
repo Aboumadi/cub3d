@@ -12,9 +12,8 @@
 
 #include "../cub3d.h"
 
-int ft_check_path(t_cub *map, int i, int j)
+char    *ft_check_path(t_cub *map, int i, int j)
 {
-    //int     fd;
     char    *str;
 
     while (map->line[i] && (map->line[i] == ' '))
@@ -22,17 +21,16 @@ int ft_check_path(t_cub *map, int i, int j)
 	while (j && (map->line[j] == ' '))
 		j--;
     str = ft_substr(map->line, i, j - i + 1);
-    if (!str)
-    free(str);
-	if (!ft_strnstr(str, ".xpm", ft_strlen(str)) || ft_strncmp(ft_strnstr(str, ".xpm", ft_strlen(str)), ".xpm", 4))
+    if (str)
+    str[ft_strlen(str) - 1] = '\0';
+	if (ft_strcmp(ft_strnstr(str, ".xpm", ft_strlen(str)), ".xpm"))
     {
         free(str);
-        return 0;
+        return NULL;
     }
     if (check_file(str))
-        printf("here\n");
-        //printf("%s\n", str);
-    return 1;
+        return str;
+    return NULL;
 }
 
 int check_file(char *str)
@@ -40,7 +38,6 @@ int check_file(char *str)
     int fd;
 
     fd = open(str, O_RDWR);
-    printf("%d\n", fd);
 	if (fd == -1)
     {
 		free(str);

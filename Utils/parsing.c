@@ -83,22 +83,17 @@ void	parse_line(t_cub *map)
 			map->f_exist = 1;
 	else if (!ft_strncmp(map->line, "C ", 2) && check_color(map, 1, ft_strlen(map->line), 0))
 			map->c_exist = 1;
-	else if (!ft_strncmp(map->line, "NO ", 3) && ft_check_path(map, 2, ft_strlen(map->line)))
-		//printf("%s\n", map->line);
-		printf("NO succes\n");
-	else if (!ft_strncmp(map->line, "SO ", 3) && ft_check_path(map, 2, ft_strlen(map->line)))
-		//printf("%s\n", map->line);
-		printf("SO succes\n");
-	else if (!ft_strncmp(map->line, "EA ", 3) && ft_check_path(map, 2, ft_strlen(map->line)))
-		//printf("%s\n", map->line);
-		printf("EA succes\n");
-	else if (!ft_strncmp(map->line, "WE ", 3) && ft_check_path(map, 2, ft_strlen(map->line)))
-		//printf("%s\n", map->line);
-		printf("WA succes\n");
+	else if (!ft_strncmp(map->line, "NO ", 3))
+		map->map.n_exist = ft_check_path(map, 2, ft_strlen(map->line));
+	else if (!ft_strncmp(map->line, "SO ", 3))
+		map->map.s_exist = ft_check_path(map, 2, ft_strlen(map->line));
+	else if (!ft_strncmp(map->line, "EA ", 3))
+		map->map.e_exist = ft_check_path(map, 2, ft_strlen(map->line));
+	else if (!ft_strncmp(map->line, "WE ", 3))
+		map->map.w_exist = ft_check_path(map, 2, ft_strlen(map->line));
 	else
 	{
-		//printf("%s\n", map->line);
-		printf("error in color\n");
+		printf("error in params\n");
 		exit(0);
 	}
 }

@@ -72,7 +72,7 @@ bool	get_val(char *str, t_cub *map);
 int		pars_val(t_cub *map);
 int		check_val(char *str);
 int		full_color(t_cub *map, bool i);
-int		ft_check_path(t_cub *map, int i, int j);
+char	*ft_check_path(t_cub *map, int i, int j);
 int		check_file(char *str);
 
 #endif
