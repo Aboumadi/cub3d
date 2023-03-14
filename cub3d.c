@@ -53,6 +53,6 @@ int main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		ft_error(2);
-	ft_read_map(argv[1], map, fd);
+	ft_read_map(argv[1], map, fd, 0);
 	return 0;
 }

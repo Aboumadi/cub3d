@@ -12,10 +12,26 @@
 
 #include"../cub3d.h"
 
-char	*get_line(char **line, int fd)
+void	ft_advanced_read(t_cub *map, int fd, int i)
 {
-	*line = get_next_line(fd);
-	return (*line);
+	int	j;
+
+	j = 0;
+	map->array = (char **)malloc(sizeof(char *) * map->nb_l - i + 1);
+	while(map->line)
+	{
+		ft_check_max_line(map->line);
+		i = 0;
+		map->array[j] = malloc (sizeof(char) * ft_strlen(map->line) + 1);
+		while(map->line[i] && map->line[i] != '\n')
+		{
+			map->array[j][i] = map->line[i];
+			i++;
+		}
+		map->array[j][i] = '\0';
+		map->line = get_next_line(fd);
+		j++;
+	}
 }
 
 void	ft_init(t_cub *map)
@@ -43,41 +59,46 @@ void	count_line_map(t_cub *count, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		ft_error(2);
-	while (get_line(&line, fd))
+	line = get_next_line(fd);
+	while (line)
 	{
 		free(line);
+		line = get_next_line(fd);
 		i++;
 	}
 	count->nb_l = i;
 	close(fd);
 }
 
-void	ft_read_map(char *file, t_cub *map2, int fd)
+void	ft_read_map(char *file, t_cub *map2, int fd, int i)
 {
-	int		i;
-
-	i = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		ft_error(2);
-	map2->line = get_line(&map2->line, fd);
+	map2->line = get_next_line(fd);
 	while (map2->line)
 	{
 		if (!strncmp(map2->line, "\n", 1))
 		{
 			free(map2->line);
-			map2->line = get_line(&map2->line, fd);
+			i++;
+			map2->line = get_next_line(fd);
 			continue;
 		}
-		parse_line(map2);
-		map2->line = get_line(&map2->line, fd);
-		i++;
+		if (parse_line(map2))
+		{
+			i++;
+			map2->line = get_next_line(fd);
+		}
+		else
+			break;
 	}
+	ft_advanced_read(map2, fd, i);
 	free(map2->line);
 	close(fd);
 }
 
-void	parse_line(t_cub *map)
+int	parse_line(t_cub *map)
 {
 	if (!ft_strncmp(map->line, "F ", 2) && check_color(map, 1, ft_strlen(map->line), 1))
 			map->f_exist = 1;
@@ -94,6 +115,7 @@ void	parse_line(t_cub *map)
 	else
 	{
 		printf("error in params\n");
-		exit(0);
+		return 0;
 	}
+	return 1;
 }

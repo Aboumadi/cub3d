@@ -63,10 +63,11 @@ typedef	struct	s_cub
 char	*get_line(char **line, int fd);
 void	ft_error(int n);
 void	count_line_map(t_cub *count, char *file);
-void	ft_read_map(char *argv, t_cub *map, int fd);
+void	ft_read_map(char *argv, t_cub *map, int fd, int i);
+void	ft_advanced_read(t_cub *map, int fd, int i);
 char	*get_next_line(int fd);
 void	ft_init(t_cub *map);
-void	parse_line(t_cub *map);
+int		parse_line(t_cub *map);
 int		check_color(t_cub *map, int i, int j, bool k);
 bool	get_val(char *str, t_cub *map);
 int		pars_val(t_cub *map);

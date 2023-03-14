@@ -40,6 +40,7 @@ int check_file(char *str)
     fd = open(str, O_RDWR);
 	if (fd == -1)
     {
+        printf("here\n");
 		free(str);
         return 0;
     }
