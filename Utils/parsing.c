@@ -20,7 +20,6 @@ void	ft_advanced_read(t_cub *map, int fd, int i)
 	map->array = (char **)malloc(sizeof(char *) * map->nb_l - i + 1);
 	while(map->line)
 	{
-		ft_check_max_line(map->line);
 		i = 0;
 		map->array[j] = malloc (sizeof(char) * ft_strlen(map->line) + 1);
 		while(map->line[i] && map->line[i] != '\n')
@@ -47,6 +46,7 @@ void	ft_init(t_cub *map)
 	map->col_v = 0;
 	map->if_c = -1;
 	map->nb_l = 0;
+	map->max_l = 0;
 }
 
 void	count_line_map(t_cub *count, char *file)
@@ -60,11 +60,13 @@ void	count_line_map(t_cub *count, char *file)
 	if (fd < 0)
 		ft_error(2);
 	line = get_next_line(fd);
-	while (line)
+	count->max_l = ft_strlen(line);
+	while (line && ++i)
 	{
+		if (count->max_l < ft_strlen(line) - 1)
+			count->max_l = ft_strlen(line) - 1;
 		free(line);
 		line = get_next_line(fd);
-		i++;
 	}
 	count->nb_l = i;
 	close(fd);
@@ -76,20 +78,16 @@ void	ft_read_map(char *file, t_cub *map2, int fd, int i)
 	if (fd < 0)
 		ft_error(2);
 	map2->line = get_next_line(fd);
-	while (map2->line)
+	while (map2->line && ++i)
 	{
 		if (!strncmp(map2->line, "\n", 1))
 		{
 			free(map2->line);
-			i++;
 			map2->line = get_next_line(fd);
 			continue;
 		}
 		if (parse_line(map2))
-		{
-			i++;
 			map2->line = get_next_line(fd);
-		}
 		else
 			break;
 	}

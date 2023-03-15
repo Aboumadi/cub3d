@@ -50,6 +50,7 @@ typedef	struct	s_cub
 	int		c_exist;
 	int		f_exist;
 	int		col_v;
+	int		max_l;
 	t_color col_map;
 	t_color	c;
 	t_color f;
