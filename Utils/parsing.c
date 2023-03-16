@@ -36,6 +36,8 @@ void	ft_advanced_read(t_cub *map, int fd, int i, int j)
 		map->array[j][i] = '\0';
 		map->line = get_next_line(fd);
 	}
+	close (fd);
+	free (map->line);
 }
 
 void	ft_init(t_cub *map)
