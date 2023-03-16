@@ -65,7 +65,7 @@ char	*get_line(char **line, int fd);
 void	ft_error(int n);
 void	count_line_map(t_cub *count, char *file);
 void	ft_read_map(char *argv, t_cub *map, int fd, int i);
-void	ft_advanced_read(t_cub *map, int fd, int i);
+void	ft_advanced_read(t_cub *map, int fd, int i, int j);
 char	*get_next_line(int fd);
 void	ft_init(t_cub *map);
 int		parse_line(t_cub *map);

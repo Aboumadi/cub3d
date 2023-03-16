@@ -12,24 +12,33 @@
 
 #include"../cub3d.h"
 
-void	ft_advanced_read(t_cub *map, int fd, int i)
+void	ft_advanced_read(t_cub *map, int fd, int i, int j)
 {
-	int	j;
-
-	j = 0;
 	map->array = (char **)malloc(sizeof(char *) * map->nb_l - i + 1);
-	while(map->line)
+	while(map->line && ++j)
 	{
-		i = 0;
-		map->array[j] = malloc (sizeof(char) * ft_strlen(map->line) + 1);
-		while(map->line[i] && map->line[i] != '\n')
+		i = -1;
+		map->array[j] = malloc (sizeof(char) * map->max_l + 1);
+		while(++i < map->max_l)
 		{
-			map->array[j][i] = map->line[i];
-			i++;
+			if ((ft_strlen(map->line) - 1) == map->max_l && map->line[i] != '\n')
+			{
+				if (map->line[i] == ' ')
+					map->array[j][i] = '1';
+				else
+					map->array[j][i] = map->line[i];
+			}
+			else if ((ft_strlen(map->line) - 1) < map->max_l)
+			{
+				if (map->line[i] && map->line[i] != '\n')
+					map->array[j][i] = map->line[i];
+				else
+					map->array[j][i] = '1';
+			}
 		}
 		map->array[j][i] = '\0';
+		printf("%s\n",map->array[j]);
 		map->line = get_next_line(fd);
-		j++;
 	}
 }
 
@@ -91,7 +100,7 @@ void	ft_read_map(char *file, t_cub *map2, int fd, int i)
 		else
 			break;
 	}
-	ft_advanced_read(map2, fd, i);
+	ft_advanced_read(map2, fd, i, 0);
 	free(map2->line);
 	close(fd);
 }
