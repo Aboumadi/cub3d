@@ -23,6 +23,12 @@ void	ft_error(int n)
 	exit(0);
 }
 
+void	ft_chek_alloc(char **str)
+{
+	if (!str)
+		ft_error(3);
+}
+
 void	ft_check_extension_file(char *file)
 {
 	char	*ch_file;

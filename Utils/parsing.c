@@ -15,29 +15,25 @@
 void	ft_advanced_read(t_cub *map, int fd, int i, int j)
 {
 	map->array = (char **)malloc(sizeof(char *) * map->nb_l - i + 1);
+		ft_chek_alloc(map->array);
 	while(map->line && ++j)
 	{
 		i = -1;
 		map->array[j] = malloc (sizeof(char) * map->max_l + 1);
+			ft_chek_alloc(&map->array[j]);
 		while(++i < map->max_l)
 		{
 			if ((ft_strlen(map->line) - 1) == map->max_l && map->line[i] != '\n')
-			{
-				if (map->line[i] == ' ')
-					map->array[j][i] = '1';
-				else
 					map->array[j][i] = map->line[i];
-			}
 			else if ((ft_strlen(map->line) - 1) < map->max_l)
 			{
 				if (map->line[i] && map->line[i] != '\n')
 					map->array[j][i] = map->line[i];
 				else
-					map->array[j][i] = '1';
+					map->array[j][i] = ' ';
 			}
 		}
 		map->array[j][i] = '\0';
-		printf("%s\n",map->array[j]);
 		map->line = get_next_line(fd);
 	}
 }

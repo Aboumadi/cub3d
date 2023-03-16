@@ -61,7 +61,7 @@ typedef	struct	s_cub
 
 
 
-char	*get_line(char **line, int fd);
+void	ft_chek_alloc(char **str);
 void	ft_error(int n);
 void	count_line_map(t_cub *count, char *file);
 void	ft_read_map(char *argv, t_cub *map, int fd, int i);
