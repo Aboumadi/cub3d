@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:55:21 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/18 19:49:31 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:51:40 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	ft_advanced_read(t_cub *map, int fd, int i, int j)
 		while (++i <= map->max_l)
 		{
 			if ((ft_strlen(map->line) - 1) == map->max_l
-				&& map->line[i] != '\n')
+				&& map->line[i] != '\n' && map->line[i])
 					map->array[j][i] = map->line[i];
-			else if ((ft_strlen(map->line) - 1) < map->max_l)
+			else if ((ft_strlen(map->line) - 1) < map->max_l && map->line[i])
 			{
 				if (i < ft_strlen(map->line) - 1)
 					map->array[j][i] = map->line[i];
