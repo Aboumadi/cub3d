@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:00:29 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/18 03:09:42 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/18 15:21:08 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 char    *ft_check_path(t_cub *map, int i, int j)
 {
     char    *str;
+    char    *ext;
 
+    ext = ".xpm";
     while (map->line[i] && (map->line[i] == ' '))
 		i++;
 	while (j && (map->line[j] == ' '))
@@ -23,16 +25,13 @@ char    *ft_check_path(t_cub *map, int i, int j)
     str = ft_substr(map->line, i, j - i + 1);
     if (str)
         str[ft_strlen(str) - 1] = '\0';
-	/*if (ft_strncmp(ft_strnstr(str, ".xpm", ft_strlen(str)), ".xpm", 4))
+    if (!ft_strnstr(str, ext, ft_strlen(str)))
     {
         free(str);
         return NULL;
-    }*/
-    if (check_file(str))
-    {
-        printf("%s\n", str);
-        return str;
     }
+    if (check_file(str))
+        return str;
     return NULL;
 }
 

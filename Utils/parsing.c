@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:55:21 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/18 02:50:22 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:49:31 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,30 @@
 
 void	ft_advanced_read(t_cub *map, int fd, int i, int j)
 {
-	if (map->array)
-		ft_free(map->array, 3);
-	map->array = (char **)malloc(sizeof(char *) * map->nb_l - i + 1);
-	ft_free(map->array, map->nb_l);
-		//ft_chek_alloc(map->array);
-	while(map->line && ++j)
+	map->array = (char **)malloc(sizeof(char *) * (map->nb_l - i + 1));
+	ft_free (map->array, map->nb_l);
+	while (map->line)
 	{
-		i = -1;
 		map->array[j] = malloc (sizeof(char) * map->max_l + 1);
 		ft_free(map->array, map->nb_l);
-			//ft_chek_alloc(&map->array[j]);
-		while(++i < map->max_l)
+		i = -1;
+		while (++i <= map->max_l)
 		{
-			if ((ft_strlen(map->line) - 1) == map->max_l && map->line[i] != '\n')
+			if ((ft_strlen(map->line) - 1) == map->max_l
+				&& map->line[i] != '\n')
 					map->array[j][i] = map->line[i];
 			else if ((ft_strlen(map->line) - 1) < map->max_l)
 			{
-				if (map->line[i] && map->line[i] != '\n')
+				if (i < ft_strlen(map->line) - 1)
 					map->array[j][i] = map->line[i];
 				else
-					map->array[j][i] = ' ';
+				map->array[j][i] = ' ';
 			}
 		}
-		map->array[j][i] = '\0';
+		map->array[j][map->max_l] = '\0';
+		j++;
 		map->line = get_next_line(fd);
 	}
-	close (fd);
 	free (map->line);
 }
 
@@ -63,7 +60,7 @@ void	count_line_map(t_cub *count, char *file)
 	int		i;
 	char	*line;
 	int		fd;
-	
+
 	i = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -91,25 +88,30 @@ void	ft_read_map(char *file, t_cub *map2, int fd, int i)
 	{
 		if (!strncmp(map2->line, "\n", 1))
 		{
-			free(map2->line);
+			free (map2->line);
 			map2->line = get_next_line(fd);
-			continue;
+			continue ;
 		}
 		if (parse_line(map2))
 			map2->line = get_next_line(fd);
 		else
-			break;
+			break ;
 	}
+	if (map2->array)
+		ft_free(map2->array, 3);
 	ft_advanced_read(map2, fd, i, 0);
+	close (fd);
 	free(map2->line);
 	close(fd);
 }
 
 int	parse_line(t_cub *map)
 {
-	if (!ft_strncmp(map->line, "F ", 2) && check_color(map, 1, ft_strlen(map->line), 1))
+	if (!ft_strncmp(map->line, "F ", 2)
+		&& check_color(map, 1, ft_strlen(map->line), 1))
 			map->f_exist = 1;
-	else if (!ft_strncmp(map->line, "C ", 2) && check_color(map, 1, ft_strlen(map->line), 0))
+	else if (!ft_strncmp(map->line, "C ", 2)
+		&& check_color(map, 1, ft_strlen(map->line), 0))
 			map->c_exist = 1;
 	else if (!ft_strncmp(map->line, "NO ", 3))
 		map->map.n_exist = ft_check_path(map, 2, ft_strlen(map->line));
@@ -122,7 +124,7 @@ int	parse_line(t_cub *map)
 	else
 	{
 		printf("error in params\n");
-		return 0;
+		return (0);
 	}
 	return (1);
 }
