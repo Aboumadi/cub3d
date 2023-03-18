@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:15:08 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/02/27 02:17:04 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/18 02:53:09 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ bool	get_val(char *str, t_cub *map)
 	if (!ft_isdigit(str[i]))
 		return false;
 	map->array = (char **) malloc(3 * sizeof(char *));
+	ft_free(map->array, 3);
+	//ft_chek_alloc(map->array);
 	map->array = ft_split(str, ',');
 		free(str);
 		while (map->array[++i])
@@ -79,7 +81,8 @@ int	full_color(t_cub *map, bool i)
 		map->f.R = ft_atoi(map->array[0]);
 		map->f.G = ft_atoi(map->array[1]);
 		map->f.B = ft_atoi(map->array[2]);
-		if ((map->f.R >= 0 && map->f.R <= 255) && (map->f.G >= 0 && map->f.G <= 255) 
+		if ((map->f.R >= 0 && map->f.R <= 255)
+			&& (map->f.G >= 0 && map->f.G <= 255)
 			&& (map->f.B >= 0 && map->f.B <= 255))
 			return 1;
 		return 0;
@@ -89,7 +92,8 @@ int	full_color(t_cub *map, bool i)
 		map->c.R = ft_atoi(map->array[0]);
 		map->c.G = ft_atoi(map->array[1]);
 		map->c.B = ft_atoi(map->array[2]);
-		if ((map->c.R >= 0 && map->c.R <= 255) && (map->c.G >= 0 && map->c.G <= 255) 
+		if ((map->c.R >= 0 && map->c.R <= 255)
+			&& (map->c.G >= 0 && map->c.G <= 255) 
 			&& (map->c.B >= 0 && map->c.B <= 255))
 			return 1;
 		return 0;

@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 14:04:22 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/02/27 01:13:40 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/18 02:46:13 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ typedef	struct	s_cub
 
 
 void	ft_chek_alloc(char **str);
-void	ft_error(int n);
+void	ft_error(int n, char *arr);
+void	ft_free(char **str, int k);
 void	count_line_map(t_cub *count, char *file);
 void	ft_read_map(char *argv, t_cub *map, int fd, int i);
 void	ft_advanced_read(t_cub *map, int fd, int i, int j);

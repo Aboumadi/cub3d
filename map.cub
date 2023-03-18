@@ -2,7 +2,7 @@ F    247,10,255
 
 C    201,50,250
 
-NO       ./walls/wall_01.xpm
+NO       ./walls/wall_01.xp
 SO       ./walls/wall_02.xpm
 EA       ./walls/wall_03.xpm
 WE       ./walls/wall_04.xpm

@@ -6,7 +6,7 @@
 #    By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/22 13:59:10 by aboumadi          #+#    #+#              #
-#    Updated: 2023/02/25 23:14:36 by aboumadi         ###   ########.fr        #
+#    Updated: 2023/03/18 00:45:19 by aboumadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,6 @@ SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
 OBJ = ${SRC:.c=.o}
 
 CFLAGS = -Wall -Wextra -Werror
-
-#FRAME = -lmlx -framework OpenGL -framework AppKit
 
 CC = cc
 
