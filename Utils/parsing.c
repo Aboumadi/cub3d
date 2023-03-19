@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:55:21 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/18 19:51:40 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/19 16:07:37 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_advanced_read(t_cub *map, int fd, int i, int j)
 {
-	map->array = (char **)malloc(sizeof(char *) * (map->nb_l - i + 1));
+	map->array = (char **)malloc(sizeof(char *) * (map->nb_l));
 	ft_free (map->array, map->nb_l);
 	while (map->line)
 	{
@@ -23,22 +23,22 @@ void	ft_advanced_read(t_cub *map, int fd, int i, int j)
 		i = -1;
 		while (++i <= map->max_l)
 		{
-			if ((ft_strlen(map->line) - 1) == map->max_l
-				&& map->line[i] != '\n' && map->line[i])
+			if (((ft_strlen(map->line) - 1) == map->max_l
+					&& map->line[i] != '\n' && map->line[i]))
 					map->array[j][i] = map->line[i];
-			else if ((ft_strlen(map->line) - 1) < map->max_l && map->line[i])
+			else if ((ft_strlen(map->line) - 1) < map->max_l)
 			{
-				if (i < ft_strlen(map->line) - 1)
+				if ((i < ft_strlen(map->line) && map->line[i])
+					&& map->line[i] != '\n')
 					map->array[j][i] = map->line[i];
 				else
-				map->array[j][i] = ' ';
+					map->array[j][i] = ' ';
 			}
 		}
-		map->array[j][map->max_l] = '\0';
 		j++;
 		map->line = get_next_line(fd);
 	}
-	free (map->line);
+	map->array[j - 1][i] = '\0';
 }
 
 void	ft_init(t_cub *map)
@@ -49,6 +49,9 @@ void	ft_init(t_cub *map)
 	map->map.w_exist = NULL;
 	map->c_exist = -1;
 	map->f_exist = -1;
+	map->player.p_start = NULL;
+	map->player.p_position = 0;
+	map->player.count_pl = 0;
 	map->col_v = 0;
 	map->if_c = -1;
 	map->nb_l = 0;
@@ -99,10 +102,11 @@ void	ft_read_map(char *file, t_cub *map2, int fd, int i)
 	}
 	if (map2->array)
 		ft_free(map2->array, 3);
-	ft_advanced_read(map2, fd, i, 0);
-	close (fd);
+	map2->nb_l = map2->nb_l - i + 1;
+	ft_advanced_read(map2, fd, map2->nb_l, 0);
 	free(map2->line);
 	close(fd);
+	ft_check_map(map2, -1, -1);
 }
 
 int	parse_line(t_cub *map)

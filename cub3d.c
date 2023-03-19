@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 23:45:30 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/18 02:54:42 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/19 02:25:39 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	ft_error(int n, char *arr)
 			printf("error in allocation for one dimension\n");
 		}
 	}
+	if (n == 5)
+		printf("error in map : no wall\n");
 	exit(0);
 }
 
