@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 14:04:22 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/19 02:01:00 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/20 01:52:30 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@
 # include <string.h>
 # include "./libft/libft.h"
 
-typedef	struct	s_color
+typedef struct s_color
 {
-	int			R;
-	int			G;
-	int			B;
+	int			r;
+	int			g;
+	int			b;
+	int			dup_col;
 }	t_color;
 
 typedef struct s_text
@@ -40,12 +41,13 @@ typedef struct s_text
 
 typedef struct s_player
 {
-	char		*p_start;
+	char		p_start;
 	int			p_position;
 	int			count_pl;
+	double		direction;
 }	t_player;
 
-typedef	struct	s_cub
+typedef struct s_cub
 {
 	int			nb_l;
 	char		**array;
@@ -60,11 +62,7 @@ typedef	struct	s_cub
 	t_color		f;
 	t_text		map;
 	t_player	player;
-	
-	
 }	t_cub;
-
-
 
 void	ft_chek_alloc(char **str);
 void	ft_error(int n, char *arr);
@@ -82,6 +80,11 @@ int		check_val(char *str);
 int		full_color(t_cub *map, bool i);
 char	*ft_check_path(t_cub *map, int i, int j);
 int		check_file(char *str);
-void    ft_check_map(t_cub *map, int i, int j);
+void	ft_check_map(t_cub *map, int i, int j);
+void	check_direction_player(t_cub *map);
+void	check_inside_map(t_cub *map, int i, int j);
+void	ft_check_around(t_cub *map, int *i, int *j);
+void	ft_check_around_player(t_cub *map, int *i, int *j);
+void	ft_check_file(t_cub *map);
 
 #endif

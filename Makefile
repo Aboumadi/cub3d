@@ -6,7 +6,7 @@
 #    By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/22 13:59:10 by aboumadi          #+#    #+#              #
-#    Updated: 2023/03/19 02:55:02 by aboumadi         ###   ########.fr        #
+#    Updated: 2023/03/19 21:59:29 by aboumadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
 OBJ = ${SRC:.c=.o}
 
 CFLAGS = -Wall -Wextra -Werror
+#-g -fsanitize=address,undefined,integer
 
 CC = cc
 

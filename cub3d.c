@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 23:45:30 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/19 02:25:39 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/20 02:18:59 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	ft_error(int n, char *arr)
 {
 	if (n == 1)
-		printf("error in arguments\n");
+		printf("Error in arguments\n");
 	if (n == 2)
-		printf("error in file descriptor\n");
+		printf("Error in file descriptor\n");
 	if (n == 3)
-		printf("error in allocation for two dimension\n");
+		printf("Error in colors\n");
 	if (n == 4)
 	{
 		if (!arr)
@@ -30,6 +30,8 @@ void	ft_error(int n, char *arr)
 	}
 	if (n == 5)
 		printf("error in map : no wall\n");
+	if (n == 6)
+		printf("Error in player\n");
 	exit(0);
 }
 
@@ -48,7 +50,8 @@ void	ft_free(char **str, int k)
 				free(str[i]);
 			i++;
 		}
-	ft_error(3, NULL);
+	printf("error in allocation for two dimension\n");
+	exit(0);
 	}
 }
 
@@ -79,7 +82,7 @@ int main(int argc, char **argv)
 	map = (t_cub *)malloc(sizeof(t_cub));
 	ft_init(map);
 	count_line_map(map, argv[1]);
-	fd = open(argv[1], O_RDONLY);
+	fd = open(argv[1], O_RDWR);
 	if (fd < 0)
 		ft_error(2, NULL);
 	ft_read_map(argv[1], map, fd, 0);
