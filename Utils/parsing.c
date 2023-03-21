@@ -106,6 +106,7 @@ void	ft_read_map(char *file, t_cub *map2, int fd, int i)
 		else
 			break ;
 	}
+	ft_check_col(map2);
 	ft_check_file(map2);
 	printf("%s\n", map2->line);
 	if (map2->array)
@@ -114,15 +115,14 @@ void	ft_read_map(char *file, t_cub *map2, int fd, int i)
 	ft_advanced_read(map2, fd, map2->nb_l, 0);
 	free(map2->line);
 	close(fd);
-	ft_check_map(map2, -1, -1);
 }
 
 int	parse_line(t_cub *map)
 {
-	if (!ft_strncmp(map->line, "F ", 2) /*&& !map->f.dup_col*/
+	if (!ft_strncmp(map->line, "F ", 2)
 		&& check_color(map, 1, ft_strlen(map->line), 1))
 			map->f_exist = 1;
-	else if (!ft_strncmp(map->line, "C ", 2) /*&& !map->c.dup_col*/
+	else if (!ft_strncmp(map->line, "C ", 2)
 		&& check_color(map, 1, ft_strlen(map->line), 0))
 			map->c_exist = 1;
 	else if (!ft_strncmp(map->line, "NO ", 3))

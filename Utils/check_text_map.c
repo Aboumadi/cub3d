@@ -86,3 +86,10 @@ void	check_dup(t_cub *map, char *str)
 	else if (!ft_strncmp(str, "WE ", 3))
 		map->map.dup_w++;
 }
+
+void	ft_check_col(t_cub *map)
+{
+	if ((!map->f.dup_col && !map->c.dup_col) || (map->f.dup_col && !map->c.dup_col)
+		|| (!map->f.dup_col && map->c.dup_col))
+		ft_error(3, NULL);
+}

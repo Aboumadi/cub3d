@@ -96,5 +96,6 @@ int main(int argc, char **argv)
 	if (fd < 0)
 		ft_error(2, NULL);
 	ft_read_map(argv[1], map, fd, 0);
+	ft_check_map(map, -1, -1);
 	return 0;
 }

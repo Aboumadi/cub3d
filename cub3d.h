@@ -78,6 +78,7 @@ char	*get_next_line(int fd);
 void	ft_init(t_cub *map);
 int		parse_line(t_cub *map);
 int		check_color(t_cub *map, int i, int j, bool k);
+void	ft_check_col(t_cub *map);
 bool	get_val(char *str, t_cub *map, bool k);
 int		pars_val(t_cub *map);
 int		check_val(char *str);
