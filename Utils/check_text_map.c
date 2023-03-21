@@ -14,7 +14,16 @@
 
 void	ft_check_file(t_cub *map)
 {
-	if (!map->map.e_exist || !map->map.n_exist
+	if (map->map.dup_e >= 2 || map->map.dup_s >= 2 || map->map.dup_n >= 2 || map->map.dup_w >= 2)
+	{
+		free(map->map.e_exist);
+		free(map->map.n_exist);
+		free(map->map.w_exist);
+		free(map->map.s_exist);
+		printf("Error duplicate path\n");
+		exit(0);
+	}
+	else if (!map->map.e_exist || !map->map.n_exist
 		|| !map->map.w_exist || !map->map.s_exist)
 	{
 		free(map->map.e_exist);
@@ -26,7 +35,7 @@ void	ft_check_file(t_cub *map)
 	}
 }
 
-char	*ft_check_path(t_cub *map, int i, int j)
+char	*ft_check_path(t_cub *map, int i, int j, char *elem)
 {
 	char	*str;
 
@@ -44,7 +53,10 @@ char	*ft_check_path(t_cub *map, int i, int j)
 		return (NULL);
 	}
 	if (check_file(str))
+	{
+		check_dup(map, elem);
 		return (str);
+	}
 	return (NULL);
 }
 
@@ -61,4 +73,16 @@ int	check_file(char *str)
 	else
 		close(fd);
 	return (1);
+}
+
+void	check_dup(t_cub *map, char *str)
+{
+	if (!ft_strncmp(str, "NO ", 3))
+		map->map.dup_n++;
+	else if (!ft_strncmp(str, "SO ", 3))
+		map->map.dup_s++;
+	else if (!ft_strncmp(str, "EA ", 3))
+		map->map.dup_e++;
+	else if (!ft_strncmp(str, "WE ", 3))
+		map->map.dup_w++;
 }

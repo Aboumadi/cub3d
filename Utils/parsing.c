@@ -119,20 +119,20 @@ void	ft_read_map(char *file, t_cub *map2, int fd, int i)
 
 int	parse_line(t_cub *map)
 {
-	if (!ft_strncmp(map->line, "F ", 2) && !map->f.dup_col
+	if (!ft_strncmp(map->line, "F ", 2) /*&& !map->f.dup_col*/
 		&& check_color(map, 1, ft_strlen(map->line), 1))
 			map->f_exist = 1;
-	else if (!ft_strncmp(map->line, "C ", 2) && !map->c.dup_col
+	else if (!ft_strncmp(map->line, "C ", 2) /*&& !map->c.dup_col*/
 		&& check_color(map, 1, ft_strlen(map->line), 0))
 			map->c_exist = 1;
-	else if (!ft_strncmp(map->line, "NO ", 3) && !map->map.dup_n)
-			map->map.n_exist = ft_check_path(map, 2, ft_strlen(map->line));
-	else if (!ft_strncmp(map->line, "SO ", 3) && !map->map.dup_s)
-		map->map.s_exist = ft_check_path(map, 2, ft_strlen(map->line));
-	else if (!ft_strncmp(map->line, "EA ", 3) && !map->map.dup_e)
-		map->map.e_exist = ft_check_path(map, 2, ft_strlen(map->line));
-	else if (!ft_strncmp(map->line, "WE ", 3) && !map->map.dup_w)
-		map->map.w_exist = ft_check_path(map, 2, ft_strlen(map->line));
+	else if (!ft_strncmp(map->line, "NO ", 3))
+			map->map.n_exist = ft_check_path(map, 2, ft_strlen(map->line), "NO ");
+	else if (!ft_strncmp(map->line, "SO ", 3))
+		map->map.s_exist = ft_check_path(map, 2, ft_strlen(map->line), "SO ");
+	else if (!ft_strncmp(map->line, "EA ", 3))
+		map->map.e_exist = ft_check_path(map, 2, ft_strlen(map->line), "EA ");
+	else if (!ft_strncmp(map->line, "WE ", 3))
+		map->map.w_exist = ft_check_path(map, 2, ft_strlen(map->line), "WE ");
 	else
 		return (0);
 	return (1);

@@ -1,13 +1,14 @@
-F    10,1,20
+F    10,1,200
 
-C    20,10,200
+C    20,10,101
+
 
 
 NO    ./walls/wall_01.xpm
 SO    ./walls/wall_02.xpm
 EA    ./walls/wall_03.xpm
 WE    ./walls/wall_04.xpm
-NO    ./walls/wall_02.xpm
+
 
 
 

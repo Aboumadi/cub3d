@@ -78,17 +78,17 @@ char	*get_next_line(int fd);
 void	ft_init(t_cub *map);
 int		parse_line(t_cub *map);
 int		check_color(t_cub *map, int i, int j, bool k);
-bool	get_val(char *str, t_cub *map);
+bool	get_val(char *str, t_cub *map, bool k);
 int		pars_val(t_cub *map);
 int		check_val(char *str);
 int		full_color(t_cub *map, bool i);
-char	*ft_check_path(t_cub *map, int i, int j);
+char	*ft_check_path(t_cub *map, int i, int j , char *str);
 int		check_file(char *str);
+void	check_dup(t_cub *map, char *str);
 void	ft_check_map(t_cub *map, int i, int j);
 void	check_direction_player(t_cub *map);
 void	check_inside_map(t_cub *map, int i, int j);
 void	ft_check_around(t_cub *map, int *i, int *j);
-void	ft_check_around_player(t_cub *map, int *i, int *j);
 void	ft_check_file(t_cub *map);
 
 #endif

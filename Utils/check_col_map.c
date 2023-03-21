@@ -33,13 +33,13 @@ int	check_color(t_cub *map, int i, int j, bool k)
 		if (t_line[i] == ',' && !t_line[i + 1])
 			j--;
 	}
-	if (j == 2 && get_val(t_line, map))
+	if ((j == 2 && get_val(t_line, map, k)) && (map->f.dup_col <= 1 && map->c.dup_col <= 1))
 		return (full_color(map, k));
 	else
 		return (ft_error(3, NULL), 0);
 }
 
-bool	get_val(char *str, t_cub *map)
+bool	get_val(char *str, t_cub *map, bool k)
 {
 	int	i;
 
@@ -56,6 +56,10 @@ bool	get_val(char *str, t_cub *map)
 			return (false);
 		}
 	}
+	if (k == true)
+		map->f.dup_col++;
+	else
+		map->c.dup_col++;
 	return (true);
 }
 
@@ -81,7 +85,6 @@ int	full_color(t_cub *map, bool i)
 		map->f.r = ft_atoi(map->array[0]);
 		map->f.g = ft_atoi(map->array[1]);
 		map->f.b = ft_atoi(map->array[2]);
-		map->f.dup_col++;
 		if ((map->f.r >= 0 && map->f.r <= 255)
 			&& (map->f.g >= 0 && map->f.g <= 255)
 			&& (map->f.b >= 0 && map->f.b <= 255))
@@ -93,7 +96,6 @@ int	full_color(t_cub *map, bool i)
 		map->c.r = ft_atoi(map->array[0]);
 		map->c.g = ft_atoi(map->array[1]);
 		map->c.b = ft_atoi(map->array[2]);
-		map->c.dup_col++;
 		if ((map->c.r >= 0 && map->c.r <= 255)
 			&& (map->c.g >= 0 && map->c.g <= 255)
 			&& (map->c.b >= 0 && map->c.b <= 255))
