@@ -37,6 +37,10 @@ typedef struct s_text
 	char		*n_exist;
 	char		*w_exist;
 	char		*e_exist;
+	int			dup_s;
+	int			dup_n;
+	int			dup_e;
+	int			dup_w;
 }	t_text;
 
 typedef struct s_player
@@ -64,9 +68,9 @@ typedef struct s_cub
 	t_player	player;
 }	t_cub;
 
-void	ft_chek_alloc(char **str);
 void	ft_error(int n, char *arr);
 void	ft_free(char **str, int k);
+void	ft_free2(char **str, int k);
 void	count_line_map(t_cub *count, char *file);
 void	ft_read_map(char *argv, t_cub *map, int fd, int i);
 void	ft_advanced_read(t_cub *map, int fd, int i, int j);

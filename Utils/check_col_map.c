@@ -24,9 +24,11 @@ int	check_color(t_cub *map, int i, int j, bool k)
 	t_line[ft_strlen(t_line) - 1] = '\0';
 	i = -1;
 	j = 0;
+	if (!ft_isdigit (t_line[0]))
+		return (free (t_line), ft_error(3, NULL), 0);
 	while (t_line[++i])
 	{
-		if (t_line[i] == ',' && t_line[i + 1])
+		if (t_line[i] == ',' && t_line[i + 1] && t_line[i + 1] != ',')
 			j++;
 		if (t_line[i] == ',' && !t_line[i + 1])
 			j--;
@@ -43,15 +45,14 @@ bool	get_val(char *str, t_cub *map)
 
 	i = -1;
 	map->array = (char **) malloc(3 * sizeof(char *));
-	ft_free(map->array, 3);
+		ft_free(map->array, 3);
 	map->array = ft_split(str, ',');
 	free(str);
 	while (map->array[++i])
 	{
-		if (ft_strchr(map->array[i], ' ') || !check_val(map->array[i]))
+		if ((ft_strchr(map->array[i], ' ') || !check_val(map->array[i])))
 		{
-//++++++++++++++++need fonction to free+++++++++++++++++++++//
-			free(map->array);
+			ft_free2(map->array, 3);
 			return (false);
 		}
 	}

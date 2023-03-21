@@ -17,8 +17,12 @@ void	ft_check_file(t_cub *map)
 	if (!map->map.e_exist || !map->map.n_exist
 		|| !map->map.w_exist || !map->map.s_exist)
 	{
-		puts("missing path");
-		exit(1);
+		free(map->map.e_exist);
+		free(map->map.n_exist);
+		free(map->map.w_exist);
+		free(map->map.s_exist);
+		puts("Error missing path\n");
+		exit(0);
 	}
 }
 
@@ -36,7 +40,7 @@ char	*ft_check_path(t_cub *map, int i, int j)
 	if (!ft_strrchr(str, '.') || ft_strncmp(ft_strrchr(str, '.'), ".xpm", 4))
 	{
 		free(str);
-		printf("error in file\n");
+		printf("Error extension non valid\n");
 		return (NULL);
 	}
 	if (check_file(str))
@@ -55,9 +59,6 @@ int	check_file(char *str)
 		return (0);
 	}
 	else
-	{
 		close(fd);
-		return (1);
-	}
-	return 1;
+	return (1);
 }

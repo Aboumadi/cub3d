@@ -38,21 +38,31 @@ void	ft_error(int n, char *arr)
 void	ft_free(char **str, int k)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	if (!str)
 	{
 		while (i < k)
 		{
-			j = -1;
-			while (++j < ft_strlen(str[i]) - 1)
-				free(str[i]);
+			free(str[i]);
 			i++;
 		}
 	printf("error in allocation for two dimension\n");
 	exit(0);
 	}
+}
+
+void	ft_free2(char **str, int k)
+{
+	int	i;
+
+	i = 0;
+	while (i < k)
+	{
+		free (str[i]);
+		i++;
+	}
+	free (str);
 }
 
 void	ft_check_extension_file(char *file)

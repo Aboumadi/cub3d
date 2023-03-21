@@ -54,6 +54,10 @@ void	ft_init(t_cub *map)
 	map->player.count_pl = 0;
 	map->c.dup_col = 0;
 	map->f.dup_col = 0;
+	map->map.dup_s = 0;
+	map->map.dup_n = 0;
+	map->map.dup_w = 0;
+	map->map.dup_e = 0;
 	map->col_v = 0;
 	map->if_c = -1;
 	map->nb_l = 0;
@@ -103,8 +107,9 @@ void	ft_read_map(char *file, t_cub *map2, int fd, int i)
 			break ;
 	}
 	ft_check_file(map2);
+	printf("%s\n", map2->line);
 	if (map2->array)
-		ft_free(map2->array, 3);
+		ft_free2(map2->array, 3);
 	map2->nb_l = map2->nb_l - i + 1;
 	ft_advanced_read(map2, fd, map2->nb_l, 0);
 	free(map2->line);
@@ -120,13 +125,13 @@ int	parse_line(t_cub *map)
 	else if (!ft_strncmp(map->line, "C ", 2) && !map->c.dup_col
 		&& check_color(map, 1, ft_strlen(map->line), 0))
 			map->c_exist = 1;
-	else if (!ft_strncmp(map->line, "NO ", 3) && !map->map.n_exist)
+	else if (!ft_strncmp(map->line, "NO ", 3) && !map->map.dup_n)
 			map->map.n_exist = ft_check_path(map, 2, ft_strlen(map->line));
-	else if (!ft_strncmp(map->line, "SO ", 3) && !map->map.s_exist)
+	else if (!ft_strncmp(map->line, "SO ", 3) && !map->map.dup_s)
 		map->map.s_exist = ft_check_path(map, 2, ft_strlen(map->line));
-	else if (!ft_strncmp(map->line, "EA ", 3) && !map->map.e_exist)
+	else if (!ft_strncmp(map->line, "EA ", 3) && !map->map.dup_e)
 		map->map.e_exist = ft_check_path(map, 2, ft_strlen(map->line));
-	else if (!ft_strncmp(map->line, "WE ", 3) && !map->map.w_exist)
+	else if (!ft_strncmp(map->line, "WE ", 3) && !map->map.dup_w)
 		map->map.w_exist = ft_check_path(map, 2, ft_strlen(map->line));
 	else
 		return (0);
