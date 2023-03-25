@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:55:21 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/20 01:56:18 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/25 04:06:02 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_advanced_read(t_cub *map, int fd, int i, int j)
 	ft_free (map->array, map->nb_l);
 	while (map->line)
 	{
+		check_line(map->line, map, fd);
 		map->array[j] = malloc (sizeof(char) * map->max_l + 1);
 		ft_free(map->array, map->nb_l);
 		i = -1;
@@ -36,10 +37,11 @@ void	ft_advanced_read(t_cub *map, int fd, int i, int j)
 					map->array[j][i] = ' ';
 			}
 		}
+		// printf("%s\n", map->array[j]);
 		j++;
 		map->line = get_next_line(fd);
 	}
-	map->array[j - 1][i] = '\0';
+	// map->array[j - 1][i] = '\0';
 }
 
 void	ft_init(t_cub *map)
@@ -75,6 +77,13 @@ void	count_line_map(t_cub *count, char *file)
 	if (fd < 0)
 		ft_error(2, NULL);
 	line = get_next_line(fd);
+	if (!line)
+	{
+		free(line);
+		close(fd);
+		printf("error no lines in map\n");
+		exit(0);
+	}
 	count->max_l = ft_strlen(line);
 	while (line && ++i)
 	{
@@ -108,7 +117,6 @@ void	ft_read_map(char *file, t_cub *map2, int fd, int i)
 	}
 	ft_check_col(map2);
 	ft_check_file(map2);
-	printf("%s\n", map2->line);
 	if (map2->array)
 		ft_free2(map2->array, 3);
 	map2->nb_l = map2->nb_l - i + 1;

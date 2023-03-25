@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 14:04:22 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/20 01:52:30 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/25 05:04:04 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ typedef struct s_color
 	int			b;
 	int			dup_col;
 }	t_color;
+
+typedef struct s_coordinates 
+{
+	int x;
+	int y;
+	double ang;
+} t_coordinates;
 
 typedef struct s_text
 {
@@ -68,12 +75,16 @@ typedef struct s_cub
 	t_player	player;
 }	t_cub;
 
+void	begin(int argc, char **argv);
 void	ft_error(int n, char *arr);
 void	ft_free(char **str, int k);
 void	ft_free2(char **str, int k);
+void	ft_check_extension_file(char *file);
 void	count_line_map(t_cub *count, char *file);
 void	ft_read_map(char *argv, t_cub *map, int fd, int i);
 void	ft_advanced_read(t_cub *map, int fd, int i, int j);
+void	check_line(char *str, t_cub *map, int fd);
+void	ft_check_elem_map(t_cub *map, int i,int j);
 char	*get_next_line(int fd);
 void	ft_init(t_cub *map);
 int		parse_line(t_cub *map);

@@ -1,0 +1,14 @@
+NO ./walls/wall_01.xpm
+SO ./walls/wall_02.xpm
+EA ./walls/wall_03.xpm
+WE ./walls/wall_04.xpm
+
+
+C 0,0,0
+F 0,0,0
+
+
+
+11111111
+11N11111
+11111111

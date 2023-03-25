@@ -6,7 +6,7 @@
 #    By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/04 10:50:08 by aboumadi          #+#    #+#              #
-#    Updated: 2023/02/24 22:34:38 by aboumadi         ###   ########.fr        #
+#    Updated: 2023/03/25 05:05:40 by aboumadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,9 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	ar rc $@ $(OBJ)
 	@ranlib $@
-	#@gcc $(CFLAGS) main.c -L. -lft && ./a.out
 
 %.o: %.c $(INCLUDE)
-	gcc $(CFLAGS) -c $< -o $@
+	cc $(CFLAGS) -c $< -o $@
 	
 clean:
 	@rm -rf $(OBJ)

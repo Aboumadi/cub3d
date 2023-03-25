@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 01:40:51 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/20 01:59:15 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/25 04:57:44 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	ft_check_map(t_cub *map, int i, int j)
 		if ((map->array[i][0] != ' ' && map->array[i][0] != '1') || (map->array
 			[i][map->max_l - 1] != ' ' && map->array[i][map->max_l - 1] != '1'))
 			ft_error(5, NULL);
-	i = 1;
-	while (i++ < map->nb_l - 2)
+	i = 0;
+	while (++i <= map->nb_l - 2)
 	{
 		j = 1;
 		while (j++ < map->max_l - 1)
@@ -51,30 +51,30 @@ void	check_direction_player(t_cub *map)
 		map->player.direction = 0;
 	else if (map->player.p_start == 'W')
 		map->player.direction = 3.14;
-	check_inside_map(map, 1, 1);
+	check_inside_map(map, 0, 1);
 }
 
 void	check_inside_map(t_cub *map, int i, int j)
 {
-	while (i++ < map->nb_l - 2)
+	while (++i <= map->nb_l - 2)
 	{
 		j = 1;
 		while (j++ < map->max_l - 1)
 		{
-			if (map->array[i][j] == '0')
-				ft_check_around(map, &i, &j);
+			if ((map->array[i][j] == '0'
+				&& ((map->array[i + 1][j] && map->array[i + 1][j] == ' ')
+				|| (map->array[i - 1][j] && map->array[i - 1][j] == ' ')
+				|| (map->array[i][j + 1] && map->array[i][j + 1] == ' ')
+				|| (map->array[i][j - 1] && map->array[i][j - 1] == ' '))))
+				{
+					printf("error in walls\n");
+					exit(0);
+				}
+			else if (!strchr("01NEWS ", map->array[i][j]))
+			{
+				printf("carater non valid\n");
+				exit(0);
+			}
 		}
-	}
-}
-
-void	ft_check_around(t_cub *map, int *i, int *j)
-{
-	if ((map->array[*i][*j + 1] && !ft_strchr("01NEWS", map->array[*i][*j + 1]))
-	|| (map->array[*i][*j - 1] && !ft_strchr("01NEWS", map->array[*i][*j - 1]))
-	|| (map->array[*i + 1][*j] && !ft_strchr("01NEWS", map->array[*i + 1][*j]))
-	|| (map->array[*i - 1][*j] && !ft_strchr("01NEWS", map->array[*i - 1][*j])))
-	{
-		printf("error\n");
-		exit(0);
 	}
 }

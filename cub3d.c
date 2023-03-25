@@ -6,82 +6,13 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 23:45:30 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/20 02:18:59 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/25 05:00:00 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"cub3d.h"
 
-void	ft_error(int n, char *arr)
-{
-	if (n == 1)
-		printf("Error in arguments\n");
-	if (n == 2)
-		printf("Error in file descriptor\n");
-	if (n == 3)
-		printf("Error in colors\n");
-	if (n == 4)
-	{
-		if (!arr)
-		{
-			free(arr);
-			printf("error in allocation for one dimension\n");
-		}
-	}
-	if (n == 5)
-		printf("error in map : no wall\n");
-	if (n == 6)
-		printf("Error in player\n");
-	exit(0);
-}
-
-void	ft_free(char **str, int k)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-	{
-		while (i < k)
-		{
-			free(str[i]);
-			i++;
-		}
-	printf("error in allocation for two dimension\n");
-	exit(0);
-	}
-}
-
-void	ft_free2(char **str, int k)
-{
-	int	i;
-
-	i = 0;
-	while (i < k)
-	{
-		free (str[i]);
-		i++;
-	}
-	free (str);
-}
-
-void	ft_check_extension_file(char *file)
-{
-	char	*ch_file;
-	if (ft_strlen(file) == 0)
-	{
-		printf("invalid file\n");
-		exit(0);
-	}
-	ch_file = ft_strchr(file, '.');
-	if (!ch_file || ft_strcmp(ch_file, ".cub"))
-	{
-		printf("error in file name\n");
-		exit (0);
-	}
-}
-
-int main(int argc, char **argv)
+void	begin(int argc, char **argv)
 {
 	int fd;
 	t_cub	*map;
@@ -97,5 +28,26 @@ int main(int argc, char **argv)
 		ft_error(2, NULL);
 	ft_read_map(argv[1], map, fd, 0);
 	ft_check_map(map, -1, -1);
+		
+}
+
+int main(int argc, char **argv)
+{
+	begin(argc, argv);
+	/*int fd;
+	t_cub	*map;
+	
+	if (argc != 2)
+		ft_error(1, NULL);
+	ft_check_extension_file(argv[1]);
+	map = (t_cub *)malloc(sizeof(t_cub));
+	ft_init(map);
+	count_line_map(map, argv[1]);
+	fd = open(argv[1], O_RDWR);
+	if (fd < 0)
+		ft_error(2, NULL);
+	ft_read_map(argv[1], map, fd, 0);
+	ft_check_map(map, -1, -1);*/
+	
 	return 0;
 }
