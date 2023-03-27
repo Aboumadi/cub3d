@@ -6,7 +6,7 @@
 #    By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/22 13:59:10 by aboumadi          #+#    #+#              #
-#    Updated: 2023/03/25 02:20:04 by aboumadi         ###   ########.fr        #
+#    Updated: 2023/03/25 16:08:17 by aboumadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
 OBJ = ${SRC:.c=.o}
 
 CFLAGS = -Wall -Wextra -Werror
+
+FRAME = -lmlx -framework OpenGL -framework AppKit
 #-g -fsanitize=address,undefined,integer
 
 CC = cc
@@ -32,7 +34,7 @@ all : $(NAME)
 $(NAME) : $(OBJ) $(HEADER)
 		$(MAKE) -C ./libft
 		@echo "making libft.a ..."
-		@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+		@$(CC) $(CFLAGS) $(FRAME) $(OBJ) $(LIBFT) -o $(NAME)
 
 clean :
 		$(MAKE) clean -C ./libft

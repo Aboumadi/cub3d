@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:15:08 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/20 02:23:27 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/26 22:10:30 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ bool	get_val(char *str, t_cub *map, bool k)
 	int	i;
 
 	i = -1;
-	map->array = (char **) malloc(3 * sizeof(char *));
-		ft_free(map->array, 3);
 	map->array = ft_split(str, ',');
 	free(str);
 	while (map->array[++i])
@@ -75,7 +73,9 @@ int	check_val(char *str)
 			return (0);
 		}
 	}
-	return (1);
+	if (i >=1 && i <= 3)
+		return (1);
+	return 0;
 }
 
 int	full_color(t_cub *map, bool i)

@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:55:21 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/25 04:06:02 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/26 22:09:45 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,9 @@ void	ft_advanced_read(t_cub *map, int fd, int i, int j)
 					map->array[j][i] = ' ';
 			}
 		}
-		// printf("%s\n", map->array[j]);
 		j++;
 		map->line = get_next_line(fd);
 	}
-	// map->array[j - 1][i] = '\0';
 }
 
 void	ft_init(t_cub *map)
@@ -115,8 +113,8 @@ void	ft_read_map(char *file, t_cub *map2, int fd, int i)
 		else
 			break ;
 	}
-	ft_check_col(map2);
 	ft_check_file(map2);
+	ft_check_col(map2);
 	if (map2->array)
 		ft_free2(map2->array, 3);
 	map2->nb_l = map2->nb_l - i + 1;

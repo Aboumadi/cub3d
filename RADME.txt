@@ -1,0 +1,1 @@
+https://aurelienbrabant.fr/blog/pixel-drawing-with-the-minilibx#Encoding-a-color-according-to-the-True-Color-standard

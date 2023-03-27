@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 14:04:22 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/25 05:04:04 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/25 17:07:33 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stdbool.h>
-//# include <mlx.h>
+# include <mlx.h>
 # include <string.h>
 # include "./libft/libft.h"
 
@@ -31,12 +31,14 @@ typedef struct s_color
 	int			dup_col;
 }	t_color;
 
-typedef struct s_coordinates 
+typedef struct s_mlx
 {
-	int x;
-	int y;
-	double ang;
-} t_coordinates;
+	void	*mlx;
+	void	*mlx_wind;
+	void	*img;
+	void	*wall;
+	void	*empty;
+} t_mlx;
 
 typedef struct s_text
 {
@@ -73,9 +75,10 @@ typedef struct s_cub
 	t_color		f;
 	t_text		map;
 	t_player	player;
+	t_mlx		m_map;
 }	t_cub;
 
-void	begin(int argc, char **argv);
+void	begin(int argc, char **argv, t_cub *map);
 void	ft_error(int n, char *arr);
 void	ft_free(char **str, int k);
 void	ft_free2(char **str, int k);
