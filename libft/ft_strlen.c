@@ -6,10 +6,9 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 17:26:42 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/02/25 17:45:13 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/27 03:10:59 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 int	ft_strlen(const char *str)
 {

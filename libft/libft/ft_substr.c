@@ -3,36 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akharraz <akharraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/06 20:04:12 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/27 03:13:40 by aboumadi         ###   ########.fr       */
+/*   Created: 2021/11/04 14:02:06 by ysakine           #+#    #+#             */
+/*   Updated: 2023/03/20 02:21:07 by akharraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "../inc/libft.h"
 
-char	*ft_substr(char const *src, int s, int len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int		i;
-	char	*dst;
-	int		j;
+	char	*buff;
+	size_t	l;
 
-	i = 0;
-	if (!src)
-		return (NULL);
-	j = 0;
-	while (i < len && src[i++] != '\0')
-		j++;
-	dst = malloc((j + 1) * sizeof(char));
-	if (dst == NULL)
-		return (NULL);
-	i = 0;
-	while (i < len && (s <= ft_strlen(src)) && (src[i + s] != '\0'))
-	{
-		dst[i] = src[i + s];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
+	l = ft_strlen(s);
+	buff = (char *)ft_calloc(len + 1, sizeof(char));
+	if (!buff)
+		return (0);
+	if (start >= l)
+		return (buff);
+	ft_memcpy (buff, &s[start], len);
+	return (buff);
 }

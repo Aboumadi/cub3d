@@ -6,10 +6,9 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 10:25:19 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/02/25 19:05:03 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/27 03:10:40 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 int	ft_strlcpy(char *s2, const char *s1, int n)
 {
@@ -32,9 +31,3 @@ int	ft_strlcpy(char *s2, const char *s1, int n)
 	s2[i] = '\0';
 	return (j);
 }
-/*int main()
-{
-	char *str1;
-	char str2[10];
-	printf("%lu\n", ft_strlcpy(str2, str1, 0), strlcpy(str2, str1, 0));
-}*/

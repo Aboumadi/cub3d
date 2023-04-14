@@ -6,7 +6,7 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 20:13:56 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/02/25 20:05:18 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/27 02:57:36 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	ft_strlen(const char *str)
 
 char	*ft_strjoin(char *str, char *buff)
 {
-	int	i;
-	int	j;
-	char			*s3;
+	int		i;
+	int		j;
+	char	*s3;
 
 	if (!str)
 	{

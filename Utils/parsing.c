@@ -6,65 +6,59 @@
 /*   By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:55:21 by aboumadi          #+#    #+#             */
-/*   Updated: 2023/03/26 22:09:45 by aboumadi         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:53:53 by aboumadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../cub3d.h"
 #include <sys/fcntl.h>
 
-void	ft_advanced_read(t_cub *map, int fd, int i, int j)
+void	ft_advanced_read(t_map *map, int fd, int i, int j)
 {
-	map->array = (char **)malloc(sizeof(char *) * (map->nb_l));
-	ft_free (map->array, map->nb_l);
 	while (map->line)
 	{
 		check_line(map->line, map, fd);
-		map->array[j] = malloc (sizeof(char) * map->max_l + 1);
-		ft_free(map->array, map->nb_l);
+		map->map[j] = malloc (sizeof(char) * map->map_w + 1);
+		ft_free(map->map, map->map_h);
 		i = -1;
-		while (++i <= map->max_l)
+		while (++i <= map->map_w)
 		{
-			if (((ft_strlen(map->line) - 1) == map->max_l
+			if (((ft_strlen(map->line) - 1) == map->map_w
 					&& map->line[i] != '\n' && map->line[i]))
-					map->array[j][i] = map->line[i];
-			else if ((ft_strlen(map->line) - 1) < map->max_l)
+					map->map[j][i] = map->line[i];
+			else if ((ft_strlen(map->line) - 1) < map->map_w)
 			{
 				if ((i < ft_strlen(map->line) && map->line[i])
 					&& map->line[i] != '\n')
-					map->array[j][i] = map->line[i];
+					map->map[j][i] = map->line[i];
 				else
-					map->array[j][i] = ' ';
+					map->map[j][i] = ' ';
 			}
 		}
 		j++;
+		free(map->line);
 		map->line = get_next_line(fd);
+		if (map->line[0] != '\0')
+		printf("error");
 	}
 }
 
-void	ft_init(t_cub *map)
+void	ft_init(t_map *map)
 {
-	map->map.e_exist = NULL;
-	map->map.n_exist = NULL;
-	map->map.s_exist = NULL;
-	map->map.w_exist = NULL;
-	map->c_exist = -1;
-	map->f_exist = -1;
-	map->player.p_position = 0;
-	map->player.count_pl = 0;
-	map->c.dup_col = 0;
-	map->f.dup_col = 0;
-	map->map.dup_s = 0;
-	map->map.dup_n = 0;
-	map->map.dup_w = 0;
-	map->map.dup_e = 0;
-	map->col_v = 0;
-	map->if_c = -1;
-	map->nb_l = 0;
-	map->max_l = 0;
+	map->e_textures = NULL;
+	map->n_textures = NULL;
+	map->s_textures = NULL;
+	map->w_textures = NULL;
+	map->f_col = -1;
+	map->c_col = -1;
+	map->checker = 0;
+	map->map_h = 0;
+	map->map_w = 0;
+	map->p_pos.x = 0;
+	map->p_pos.y = 0;
 }
 
-void	count_line_map(t_cub *count, char *file)
+void	count_line_map(t_map *count, char *file)
 {
 	int		i;
 	char	*line;
@@ -73,32 +67,23 @@ void	count_line_map(t_cub *count, char *file)
 	i = 0;
 	fd = open(file, O_RDWR);
 	if (fd < 0)
-		ft_error(2, NULL);
+		ft_error(2, NULL, count);
 	line = get_next_line(fd);
-	if (!line)
-	{
-		free(line);
-		close(fd);
-		printf("error no lines in map\n");
-		exit(0);
-	}
-	count->max_l = ft_strlen(line);
 	while (line && ++i)
 	{
-		if (count->max_l < ft_strlen(line) - 1)
-			count->max_l = ft_strlen(line) - 1;
+		if (count->map_w < ft_strlen(line))
+			count->map_w = ft_strlen(line);
 		free(line);
 		line = get_next_line(fd);
 	}
-	count->nb_l = i;
+	if (count->map_w == 0)
+	 	return (ft_putstr_fd("Error\nfile is empty\n", 2), free(line), exit(1));
+	count->map_h = i;
 	close(fd);
 }
 
-void	ft_read_map(char *file, t_cub *map2, int fd, int i)
+void	ft_read_map(t_map *map2, int fd, int i)
 {
-	fd = open(file, O_RDWR);
-	if (fd < 0)
-		ft_error(2, NULL);
 	map2->line = get_next_line(fd);
 	while (map2->line && ++i)
 	{
@@ -113,32 +98,36 @@ void	ft_read_map(char *file, t_cub *map2, int fd, int i)
 		else
 			break ;
 	}
+	if (!map2->line)
+	{
+		printf("error\n");
+		exit(0);
+	}
 	ft_check_file(map2);
-	ft_check_col(map2);
-	if (map2->array)
-		ft_free2(map2->array, 3);
-	map2->nb_l = map2->nb_l - i + 1;
-	ft_advanced_read(map2, fd, map2->nb_l, 0);
+	if (map2->map)
+		ft_free2(map2->map, 3);
+	map2->map_h = map2->map_h - i + 1;
+	map2->map = (char **)malloc(sizeof(char *) * (map2->map_h));
+	ft_free (map2->map, map2->map_h);
+	ft_advanced_read(map2, fd, map2->map_h, 0);
 	free(map2->line);
 	close(fd);
 }
 
-int	parse_line(t_cub *map)
+int	parse_line(t_map *map)
 {
 	if (!ft_strncmp(map->line, "F ", 2)
-		&& check_color(map, 1, ft_strlen(map->line), 1))
-			map->f_exist = 1;
+		&& check_color(map, 1, ft_strlen(map->line)) && full_color(map, 1));
 	else if (!ft_strncmp(map->line, "C ", 2)
-		&& check_color(map, 1, ft_strlen(map->line), 0))
-			map->c_exist = 1;
-	else if (!ft_strncmp(map->line, "NO ", 3))
-			map->map.n_exist = ft_check_path(map, 2, ft_strlen(map->line), "NO ");
-	else if (!ft_strncmp(map->line, "SO ", 3))
-		map->map.s_exist = ft_check_path(map, 2, ft_strlen(map->line), "SO ");
-	else if (!ft_strncmp(map->line, "EA ", 3))
-		map->map.e_exist = ft_check_path(map, 2, ft_strlen(map->line), "EA ");
-	else if (!ft_strncmp(map->line, "WE ", 3))
-		map->map.w_exist = ft_check_path(map, 2, ft_strlen(map->line), "WE ");
+		&& check_color(map, 1, ft_strlen(map->line)) && full_color(map, 0));
+	else if (!ft_strncmp(map->line, "NO ", 3) && !map->n_textures)
+		map->n_textures = ft_check_path(map, 2, ft_strlen(map->line));
+	else if (!ft_strncmp(map->line, "SO ", 3) && !map->s_textures)
+		map->s_textures = ft_check_path(map, 2, ft_strlen(map->line));
+	else if (!ft_strncmp(map->line, "EA ", 3) && !map->e_textures)
+		map->e_textures = ft_check_path(map, 2, ft_strlen(map->line));
+	else if (!ft_strncmp(map->line, "WE ", 3) && !map->w_textures)
+		map->w_textures = ft_check_path(map, 2, ft_strlen(map->line));
 	else
 		return (0);
 	return (1);

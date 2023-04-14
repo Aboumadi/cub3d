@@ -6,7 +6,7 @@
 #    By: aboumadi <aboumadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/22 13:59:10 by aboumadi          #+#    #+#              #
-#    Updated: 2023/03/25 16:08:17 by aboumadi         ###   ########.fr        #
+#    Updated: 2023/03/30 21:54:14 by aboumadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,7 @@ OBJ = ${SRC:.c=.o}
 
 CFLAGS = -Wall -Wextra -Werror
 
-FRAME = -lmlx -framework OpenGL -framework AppKit
-#-g -fsanitize=address,undefined,integer
+#FRAME = -lmlx -framework OpenGL -framework AppKit #-g -fsanitize=address,undefined,integer
 
 CC = cc
 
